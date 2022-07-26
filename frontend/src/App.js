@@ -9,37 +9,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import logo from "./assets/images/CBDA_logo_png.png";
 import ExcelAtExcelScreen from "./Screens/ExcelAtExcelScreen/ExcelAtExcelScreen";
 import AdminPanelScreen from "./Screens/AdminPanelScreen/AdminPanelScreen";
-import { Cookies } from "universal-cookie";
+import ReportScreen from "./Screens/ReportScreen/ReportScreen";
 export default function App() {
-  const cookies = new Cookies();   
-  const [loggedIn,setLoggedIn] = loggedIn(false);
-  useEffect(()=>{
-    if(cookies.get('bootstrapId') != undefined){
-      setLoggedIn(true)
-    }
-    
-  })
   return (
     <div>
-      <CookiesProvider>
-        <div className="container">
-          <div className="row justify-content-center align-self-center">
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<WelcomeScreen />} />
-                <Route
-                  path="studentRegister"
-                  element={<StudentDetailsScreen />}
-                />
-                <Route path="iceBreaker" element={<IceBreakerFormScreen />} />
-
-                <Route path="excelAtExcel" element={<ExcelAtExcelScreen />} />
-                <Route path="adminctrlpanel" element={<AdminPanelScreen />} />
-              </Routes>
-            </BrowserRouter>
-          </div>
+      <div className="container">
+        <div className="row justify-content-center align-self-center">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<WelcomeScreen />} />
+              <Route
+                path="studentRegister"
+                element={<StudentDetailsScreen />}
+              />
+              <Route path="iceBreaker" element={<IceBreakerFormScreen />} />
+              <Route path="groupReport" element={<ReportScreen />} />
+              <Route path="excelAtExcel" element={<ExcelAtExcelScreen />} />
+              <Route path="adminctrlpanel" element={<AdminPanelScreen />} />
+            </Routes>
+          </BrowserRouter>
         </div>
-      </CookiesProvider>
+      </div>
     </div>
   );
 }

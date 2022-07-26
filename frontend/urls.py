@@ -10,4 +10,5 @@ urlpatterns = [
     path('excelAtExcel/', views.index ),
     path('iceBreaker/', views.index ),
     path('adminctrlpanel/', views.index ),
+    path('groupReport/',views.index),
 ]
