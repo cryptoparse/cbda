@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./StudentDetailsScreen.css";
 import "bootstrap/dist/css/bootstrap.css";
 import useForm from "../../hooks/formValidate";
-import { useCookies } from "react-cookie";
+import Cookies from 'universal-cookie';
+
 export default function StudentDetailsScreen() {
   const [inputField, setInputField] = useState({
     username: "",
     email: "",
     phonenumber: 0,
   });
-  const [cookies, setCookie] = useCookies(["cookie-name"]);
+  const cookies = new Cookies();   
+  
+  useEffect(()=>{
+    if(cookies.get('bootstrapId') != undefined){
+      
+    }
+    else{
+      
+    }
+  })
   function formSubmit() {
-    fetch("eventuser/", {
+    fetch("/eventuser/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -22,17 +32,14 @@ export default function StudentDetailsScreen() {
         email: inputField.email,
         phone: inputField.phonenumber,
       }),
+    }).then((response) => {
+      if(!response.ok) throw new Error(response.status);
+      else return response.json();
     })
-      .then((res) => res.json())
-      .then((body) => {
-        var tomorrow = new Date();
-        tomorrow.setDate(today.getDate() + 1);
-
-        setCookie("cbdaUsr", body.bootstrapId, {
-          path: "/",
-          expires: tomorrow,
-        });
+      .then((res) => {                
+        cookies.set('bootstrapId', res.bootstrapId, { path: '/' });
       })
+      
       .catch((err) => {
         console.log(err);
       });

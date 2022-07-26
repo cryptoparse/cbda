@@ -9,8 +9,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import logo from "./assets/images/CBDA_logo_png.png";
 import ExcelAtExcelScreen from "./Screens/ExcelAtExcelScreen/ExcelAtExcelScreen";
 import AdminPanelScreen from "./Screens/AdminPanelScreen/AdminPanelScreen";
-import { CookiesProvider } from "react-cookie";
+import { Cookies } from "universal-cookie";
 export default function App() {
+  const cookies = new Cookies();   
+  const [loggedIn,setLoggedIn] = loggedIn(false);
+  useEffect(()=>{
+    if(cookies.get('bootstrapId') != undefined){
+      setLoggedIn(true)
+    }
+    
+  })
   return (
     <div>
       <CookiesProvider>
