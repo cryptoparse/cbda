@@ -18,7 +18,9 @@ export default function StudentDetailsScreen() {
     }
   });
   function formSubmit() {
-    createUser(() => {}, inputField);
+    createUser(() => {
+      window.location.href = "/iceBreaker/";
+    }, inputField);
   }
   const { handleChange, errors, handleSubmit } = useForm(formSubmit);
 

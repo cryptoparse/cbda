@@ -1,9 +1,10 @@
 
 from rest_framework import generics,views,status
 from rest_framework.response import Response
-from .serializers import EventUserSerializer
+from .serializers import EventUserSerializer, Phase1Serializer
 from .models import EventUser
 from django.forms.models import model_to_dict
+from .phase1  import getGroups
 # Create your views here.
 from django.utils.crypto import get_random_string
 class EventUserViewSet(generics.ListCreateAPIView):
@@ -45,9 +46,35 @@ class GetUserDetailsView(views.APIView):
         except EventUser.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+
+
 class EventStatusView(views.APIView):
     def get(self, request):
-        countusers = EventUser.objects.all().count();
+        countusers = EventUser.objects.all().count()
 
         return Response({'userstatus':{
                 'registeredCount':countusers}}, status=status.HTTP_200_OK)
+
+
+class Phase1View(views.APIView):
+    def post(self,request):
+        p1response = request.data
+        serializer = Phase1Serializer(data=p1response)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'Response':'Successful'}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CreateGroupsView(views.APIView):
+    def post(self,request):
+        
+        grouplist = getGroups(15)
+        grouplistJSON = grouplist.to_dict()
+        return Response({'GroupList':grouplistJSON},status=status.HTTP_200_OK)
+
+
+class GetGroupNumber(views.APIView):
+    def post(self,request):
+        
+        

@@ -3,7 +3,7 @@ export default function AdminPanelScreen() {
   const [userstatus, setUserstatus] = useState({});
 
   const loadData = async () => {
-    fetch("eventuserstatus/", {
+    fetch("/eventuserstatus/", {
       method: "GET",
       headers: {
         Accept: "application/json",

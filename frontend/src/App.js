@@ -15,6 +15,7 @@ export default function App() {
     <div>
       <div className="container">
         <div className="row justify-content-center align-self-center">
+          <img src={logo} alt="CBDA - Center for Business Data Analytics" />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<WelcomeScreen />} />

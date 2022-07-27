@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./IceBreakerFormScreen.css";
-import Q8_IMG from "../../assets/images/p1_img1.png";
-import Q9_IMG from "../../assets/images/p1_img2.png";
-import icebreaker from "../../assets/images/icebreaker.png";
+import { getUserData } from "../../Services/apis";
 export default function IceBreakerFormScreen() {
   const [inputField, setInputField] = useState({
+    email: "",
     q1: "",
     q2: "",
     q3: "",
@@ -15,14 +14,23 @@ export default function IceBreakerFormScreen() {
     q7: "",
     q8: "",
     q9: "",
-    q0: "",
+    q10: "",
+    q11: "",
   });
+  useEffect(() => {
+    getUserData((data) => {
+      setdata(data);
+    });
+  }, []);
+  const setdata = (data) => {
+    setInputField({ ...inputField, email: data.email });
+  };
   const inputsHandler = (e) => {
-    setInputField({ [e.target.name]: e.target.value });
+    setInputField({ ...inputField, [e.target.name]: e.target.value });
   };
 
   const submitAction = (e) => {
-    alert(inputField);
+    console.log(inputField.q10);
   };
 
   return (
@@ -33,22 +41,6 @@ export default function IceBreakerFormScreen() {
         </div>
         <br />
         <form onSubmit={submitAction}>
-          <label for="q1" className="form-label">
-            Your Gender?
-          </label>
-          <select
-            id="q0"
-            className="form-select"
-            name="q0"
-            value={inputField.q0}
-            onChange={inputsHandler}
-          >
-            <option selected>Choose your Option</option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-            <option value="O">Other</option>
-          </select>
-
           <br />
           <label for="q1" className="form-label">
             Which course are you have enrolled to in?
@@ -60,12 +52,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q1}
             onChange={inputsHandler}
           >
-            <option selected>Choose your Option</option>
-            <option value="BBA">BBA</option>
-            <option value="BCom">BCom</option>
-            <option value="LAW">Law</option>
-            <option value="BscPSY">Bsc. Psychology</option>
-            <option value="Oth">Other</option>
+            <option value="op1">BBA</option>
+            <option value="op2">BCom</option>
+            <option value="op3">Bsc</option>
+            <option value="op4">Law</option>
           </select>
 
           <br />
@@ -79,13 +69,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q2}
             onChange={inputsHandler}
           >
-            <option selected>Choose your Option</option>
-            <option value="Red">Red</option>
-            <option value="Blue">Blue</option>
-            <option value="Yellow">Yellow</option>
-            <option value="Green">Green</option>
-            <option value="Black">Black</option>
-            <option value="White">White</option>
+            <option value="op1">Red</option>
+            <option value="op2">Blue</option>
+            <option value="op3">Yellow</option>
+            <option value="op4">Green</option>
           </select>
 
           <br />
@@ -99,13 +86,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q3}
             onChange={inputsHandler}
           >
-            <option selected>Choose your Option</option>
-            <option value="Math">Math</option>
-            <option value="Science">Science</option>
-            <option value="Social Studies">Social Studies</option>
-            <option value="Geography">Geography</option>
-            <option value="Politics">Politics</option>
-            <option value="White">Performance Arts</option>
+            <option value="op1">Math</option>
+            <option value="op2">Science</option>
+            <option value="op3">Social Studies</option>
+            <option value="op4">Geography</option>
           </select>
 
           <br />
@@ -119,31 +103,33 @@ export default function IceBreakerFormScreen() {
             value={inputField.q4}
             onChange={inputsHandler}
           >
-            <option selected>Choose your Option</option>
-            <option value="Batman">Batman</option>
-            <option value="Superman">Superman</option>
-            <option value="WonderWoman">Wonder Woman</option>
-            <option value="Flash">Flash</option>
+            <option value="op1">Batman</option>
+            <option value="op2">Superman</option>
+            <option value="op3">Wonder Woman</option>
+            <option value="op4">Flash</option>
           </select>
 
           <br />
-          <div className="mb-3">
-            <label for="q5" className="form-label">
-              How long do you study for a week usually?
-            </label>
-            <input
-              id="q5"
-              type="number"
-              name="q5"
-              maxLength={5}
-              placeholder="Enter the Answer"
-              className="form-control"
-              onChange={inputsHandler}
-              value={inputField.q5}
-            />
-          </div>
+          <label for="q5" className="form-label">
+            What kind of movies do you like?
+          </label>
+          <select
+            id="q5"
+            className="form-select"
+            name="q5"
+            value={inputField.q5}
+            onChange={inputsHandler}
+          >
+            <option value="op1">Thriller</option>
+            <option value="op2">Drama</option>
+            <option value="op3">Action</option>
+            <option value="op4">Horror</option>
+            <option value="op5">Comedy</option>
+            <option value="op6">Romance</option>
+          </select>
+          <br />
           <label for="q6" className="form-label">
-            What type of News do you like?
+            Which one do you prefer?
           </label>
           <select
             id="q6"
@@ -152,19 +138,12 @@ export default function IceBreakerFormScreen() {
             value={inputField.q6}
             onChange={inputsHandler}
           >
-            <option selected>Choose your Option</option>
-            <option value="Social">Social</option>
-            <option value="Tech">Tech</option>
-            <option value="Crime">Crime</option>
-            <option value="Lifestyle">Lifestyle</option>
-            <option value="Arts">Arts</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Sports">Sports</option>
-            <option value="Business">Business</option>
+            <option value="op1">Android</option>
+            <option value="op2">IOS</option>
           </select>
           <br />
           <label for="q7" className="form-label">
-            What kind of movies do you like?
+            Would you prefer to watch
           </label>
           <select
             id="q7"
@@ -173,16 +152,69 @@ export default function IceBreakerFormScreen() {
             value={inputField.q7}
             onChange={inputsHandler}
           >
-            <option selected>Choose your Option</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Drama">Drama</option>
-            <option value="Action">Action</option>
-            <option value="Horror">Horror</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Romance">Romance</option>
-            <option value="Adventure">Adventure</option>
+            <option value="op1">Series</option>
+            <option value="op2">Movies</option>
           </select>
           <br />
+          <label for="q8" className="form-label">
+            Which one do you prefer for eating food?
+          </label>
+          <select
+            id="q8"
+            className="form-select"
+            name="q8"
+            value={inputField.q8}
+            onChange={inputsHandler}
+          >
+            <option value="op1">Dine in </option>
+            <option value="op2">Takeaway or Online Order</option>
+          </select>
+          <br />
+          <label for="q9" className="form-label">
+            Which media do you prefer to read from?
+          </label>
+          <select
+            id="q9"
+            className="form-select"
+            name="q9"
+            value={inputField.q9}
+            onChange={inputsHandler}
+          >
+            <option value="op1">Paper-book</option>
+            <option value="op2">PDF or Online</option>
+          </select>
+          <br />
+          <label for="q10" className="form-label">
+            Ideal Vacation Place
+          </label>
+          <select
+            id="q10"
+            className="form-select"
+            name="q10"
+            value={inputField.q10}
+            onChange={inputsHandler}
+          >
+            <option value="op1">Mountains</option>
+            <option value="op2">Beaches</option>
+          </select>
+          <br />
+          <label for="q11" className="form-label">
+            Which pet do you prefer?
+          </label>
+          <select
+            id="q11"
+            className="form-select"
+            name="q11"
+            value={inputField.q11}
+            onChange={inputsHandler}
+          >
+            <option value="op1">Cats</option>
+            <option value="op2">Dogs</option>
+            <option value="op3">Birds</option>
+            <option value="op4">Fish</option>
+          </select>
+          <br />
+
           <button type="submit" value="submit" className="submit btn btn-lg">
             Submit
           </button>
