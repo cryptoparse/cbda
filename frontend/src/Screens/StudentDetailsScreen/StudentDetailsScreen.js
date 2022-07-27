@@ -2,47 +2,23 @@ import React, { useEffect, useState } from "react";
 import "./StudentDetailsScreen.css";
 import "bootstrap/dist/css/bootstrap.css";
 import useForm from "../../hooks/formValidate";
-import Cookies from 'universal-cookie';
-
+import Cookies from "universal-cookie";
+import { createUser, getUserData } from "./../../Services/apis";
 export default function StudentDetailsScreen() {
   const [inputField, setInputField] = useState({
     username: "",
     email: "",
     phonenumber: 0,
   });
-  const cookies = new Cookies();   
-  
-  useEffect(()=>{
-    if(cookies.get('bootstrapId') != undefined){
-      
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    if (cookies.get("bootstrapId") != undefined) {
+    } else {
     }
-    else{
-      
-    }
-  })
+  });
   function formSubmit() {
-    fetch("/eventuser/", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: inputField.username,
-        email: inputField.email,
-        phone: inputField.phonenumber,
-      }),
-    }).then((response) => {
-      if(!response.ok) throw new Error(response.status);
-      else return response.json();
-    })
-      .then((res) => {                
-        cookies.set('bootstrapId', res.bootstrapId, { path: '/' });
-      })
-      
-      .catch((err) => {
-        console.log(err);
-      });
+    createUser(() => {}, inputField);
   }
   const { handleChange, errors, handleSubmit } = useForm(formSubmit);
 

@@ -3,6 +3,7 @@ from rest_framework import generics,views,status
 from rest_framework.response import Response
 from .serializers import EventUserSerializer
 from .models import EventUser
+from django.forms.models import model_to_dict
 # Create your views here.
 from django.utils.crypto import get_random_string
 class EventUserViewSet(generics.ListCreateAPIView):
@@ -32,6 +33,17 @@ class EventUserView(views.APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class GetUserDetailsView(views.APIView):
+    serializer_class = EventUserSerializer
+    def post(self,request):
+        authdata = request.data
+        authtok = authdata["auth"]
+        try:
+            sessObj = EventUser.objects.get(auth = authtok)
+            obj = model_to_dict(sessObj)
+            return Response({'userData':obj},status=status.HTTP_200_OK)
+        except EventUser.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class EventStatusView(views.APIView):
     def get(self, request):
