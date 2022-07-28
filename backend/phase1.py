@@ -95,7 +95,7 @@ def getGroups2Crit(groupSize=20,df=None,qoptions=None,currentGroupNo=1):
                 currentGroup['group'] = groupno
                 currentGroup['filter1'] = fv1
                 currentGroup['filter2'] = fv2
-                currentGroup['filter3'] = "None"
+                currentGroup['filter3'] = "N/A"
                 currentGroup.drop(['q1', 'q2','q3','q4','q5','q6','q7','q8','q9','q10','q11'], axis=1, inplace=True)
                 currentGroupNo +=1
                 groupingList =  groupingList.append(currentGroup,ignore_index=True)
@@ -128,8 +128,8 @@ def getGroups1Crit(groupSize=20,df=None,qoptions=None,currentGroupNo=1):
                 groupno = 'Group ' + str(currentGroupNo)
                 currentGroup['group'] = groupno
                 currentGroup['filter1'] = fv1
-                currentGroup['filter2'] = "None"
-                currentGroup['filter3'] = "None"
+                currentGroup['filter2'] = "N/A"
+                currentGroup['filter3'] = "N/A"
                 currentGroup.drop(['q1', 'q2','q3','q4','q5','q6','q7','q8','q9','q10','q11'], axis=1, inplace=True)
                 currentGroupNo +=1
                 groupingList =  groupingList.append(currentGroup,ignore_index=True)

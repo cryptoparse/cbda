@@ -1,4 +1,5 @@
 from django.db import models
+from sqlalchemy import false
 
 # Create your models here.
 class EventUser(models.Model):
@@ -10,6 +11,9 @@ class EventUser(models.Model):
     def __str__(self):
         return self.email
 
+class ActionStage(models.Model):
+    auth = models.CharField(max_length=32)
+    stage = models.CharField(max_length=3)
 
 class Phase1(models.Model):
     email = models.CharField(max_length=32, primary_key=True)
@@ -39,7 +43,7 @@ class Group(models.Model):
         return self.email
 
 class Phase2(models.Model):
-    group = models.CharField(max_length=12)
+    group = models.CharField(max_length=12, unique=True)
     totalscore = models.FloatField()
     logicalscore = models.FloatField()
     excelscore = models.FloatField()
@@ -48,3 +52,5 @@ class Phase2(models.Model):
     
     def __str__(self):
         return self.group
+
+    

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import c3q2_I from '../../assets/images/c3q2.png'
-import c3q6_I from '../../assets/images/c3q6.png'
-import c3q8_I from '../../assets/images/c3q8.png'
+import c3q2_I from "../../assets/images/c3q2.png";
+import c3q6_I from "../../assets/images/c3q6.png";
+import c3q8_I from "../../assets/images/c3q8.png";
+import { savePhase2Result } from "../../Services/apis";
 export default function ExcelAtExcelScreen() {
   const [inputField, setInputField] = useState({
+    group: "",
     c1q1: 0,
     c1q2: 0,
     c1q3: 0,
@@ -17,16 +19,22 @@ export default function ExcelAtExcelScreen() {
     c2q5: 0,
     c2q6a: 0,
     c2q6b: 0,
-    c3q1:0,
-    c3q2:0,
-    c3q3:0,
-    c3q4:0,
-    c3q5:0,
-    c3q6:0,
-    c3q7:0,
-    c3q8:0,
-    c3q9:0,    
+    c3q1: 0,
+    c3q2: 0,
+    c3q3: 0,
+    c3q4: 0,
+    c3q5: 0,
+    c3q6: 0,
+    c3q7: 0,
+    c3q8: 0,
+    c3q9: 0,
   });
+  const gpinputsHandler = (e) => {
+    setInputField({
+      ...inputField,
+      [e.target.name]: "Group ".concat(String(e.target.value)),
+    });
+  };
   const inputsHandler = (e) => {
     setInputField({ ...inputField, [e.target.name]: Number(e.target.value) });
   };
@@ -75,43 +83,78 @@ export default function ExcelAtExcelScreen() {
       (total, value) => total + value,
       0
     );
-    let finalScore = (finalTotal / 130) * 100;
-    let logicalScore =
+    let finalScore = parseFloat((finalTotal / 220) * 100).toFixed(2);
+    let logicalScore = parseFloat(
       (100 *
         (inputField.c1q3 +
           inputField.c1q4 +
           inputField.c2q3 +
-          inputField.c2q5)) /
-      40;
-    let excelScore =
+          inputField.c2q5 +
+          inputField.c3q1 +
+          inputField.c3q2 +
+          inputField.c3q8)) /
+        70
+    ).toFixed(2);
+    let excelScore = parseFloat(
       (100 *
         (inputField.c1q1 +
           inputField.c1q2 +
           inputField.c1q3 +
           inputField.c2q2 +
           inputField.c2q4)) /
-      50;
-    let mathScore =
+        50
+    ).toFixed(2);
+    let mathScore = parseFloat(
       (100 *
         (inputField.c1q1 +
           inputField.c2q1 +
           inputField.c2q4 +
           inputField.c2q6a +
-          inputField.c2q6b)) /
-      50;
-    let analyticScore =
+          inputField.c2q6b +
+          inputField.c3q3 +
+          inputField.c3q4 +
+          inputField.c3q5)) /
+        80
+    ).toFixed(2);
+    let analyticScore = parseFloat(
       (100 *
         (inputField.c1q5 +
           inputField.c1q6 +
           inputField.c2q3 +
-          inputField.c2q5)) /
-      40;
+          inputField.c2q5 +
+          inputField.c3q6 +
+          inputField.c3q9)) /
+        60
+    ).toFixed(2);
+
+    savePhase2Result({
+      group: "Group ".concat(String(inputField.group)),
+      totalscore: finalScore,
+      logicalscore: logicalScore,
+      excelscore: excelScore,
+      mathscore: mathScore,
+      analyticalscore: analyticScore,
+    });
   };
 
   return (
     <div>
       <div>
         <form onSubmit={submitAction}>
+          <div className="mb-3">
+            <h1>Enter Group number</h1>
+            <br />
+            <input
+              id="group"
+              type="number"
+              name="group"
+              step="any"
+              placeholder="Enter The answer"
+              className="form-control"
+              onChange={inputsHandler}
+            />
+          </div>
+          <br />
           <h1>Case 1: Swiggy Data - Pre and Post Diwali</h1>
           <br />
           <div className="mb-3">
@@ -387,221 +430,223 @@ export default function ExcelAtExcelScreen() {
             />
           </div>
           <div>
-              <br />
-              <h1>Case 3: Locgicl and Analytical Reasoning</h1>
+            <br />
+            <h1>Case 3: Locgicl and Analytical Reasoning</h1>
             <br />
             <div className="mb-3">
-            <label for="c3q1" className="form-label">
-            1.	In a certain language, BOOK is written as 4300, MATE is written as 3900. Then 1600 will represent which word out of given alternatives? (logical reasoning)
-            </label>
-            <br />
+              <label for="c3q1" className="form-label">
+                1. In a certain language, BOOK is written as 4300, MATE is
+                written as 3900. Then 1600 will represent which word out of
+                given alternatives?
+              </label>
+              <br />
 
-            <select
-              id="c3q1"
-              className="form-select"
-              name="c3q1"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="0">GOOD</option>
-              <option value="0">WOOD</option>
-              <option value="0">CRAB</option>
-              <option value="10">CAGE</option>
-              
-            </select>
-            <br/>
-          </div>
-          <div className="mb-3">
-            <label for="c3q2" className="form-label">
-            2.	Find the number of triangles in the given figure? (logical reasoning)
-            </label><br/>
-            <img src={c3q2_I} />
-            <br />
+              <select
+                id="c3q1"
+                className="form-select"
+                name="c3q1"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="0">GOOD</option>
+                <option value="0">WOOD</option>
+                <option value="0">CRAB</option>
+                <option value="10">CAGE</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                2. Find the number of triangles in the given figure?
+              </label>
+              <br />
+              <img src={c3q2_I} />
+              <br />
 
-            <select
-              id="c3q2"
-              className="form-select"
-              name="c3q2"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="0">8</option>
-              <option value="0">10</option>
-              <option value="10">14</option>
-              <option value="0">16</option>
-              
-            </select>
-            <br/>
-          </div>
-          
-          <div className="mb-3">
-            <label for="c3q2" className="form-label">
-            3.	A sum of money at simple interest amounts to Rs. 815 in 3 years and to Rs. 854 in 4 years. The sum is:
-            </label>
-            <br />
+              <select
+                id="c3q2"
+                className="form-select"
+                name="c3q2"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="0">8</option>
+                <option value="0">10</option>
+                <option value="10">14</option>
+                <option value="0">16</option>
+              </select>
+              <br />
+            </div>
 
-            <select
-              id="c3q3"
-              className="form-select"
-              name="c3q3"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="0">Rs 651</option>
-              <option value="0">Rs 692</option>
-              <option value="10">Rs 698</option>
-              <option value="0">Rs 704</option>
-              
-            </select>
-            <br/>
-          </div>
-          <div className="mb-3">
-            <label for="c3q2" className="form-label">
-            4.   If one-third of one-fourth of a number is 15, then three-tenth of that number is    
-            </label>
-            <br />
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                3. A sum of money at simple interest amounts to Rs. 815 in 3
+                years and to Rs. 854 in 4 years. The sum is:
+              </label>
+              <br />
 
-            <select
-              id="c3q4"
-              className="form-select"
-              name="c3q4"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="0">35</option>
-              <option value="0">36</option>
-              <option value="0">45</option>
-              <option value="10">54</option>
-              
-            </select>
-            <br/>
-          </div>
-          <div className="mb-3">
-            <label for="c3q2" className="form-label">
-            5.	The total age of Akash, Akbar and Abhishek is 80 years. What was the total of their ages three years ago? 
-            </label>
-            <br />
+              <select
+                id="c3q3"
+                className="form-select"
+                name="c3q3"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="0">Rs 651</option>
+                <option value="0">Rs 692</option>
+                <option value="10">Rs 698</option>
+                <option value="0">Rs 704</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                4. If one-third of one-fourth of a number is 15, then
+                three-tenth of that number is
+              </label>
+              <br />
 
-            <select
-              id="c3q5"
-              className="form-select"
-              name="c3q5"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="10">71 Years</option>
-              <option value="0">72 Years</option>
-              <option value="0">74 Years</option>
-              <option value="0">77 Years</option>
-              
-            </select>
-            <br/>
-          </div>
-          <div className="mb-3">
-            <label for="c3q2" className="form-label">
-            6.	Identify the figure that completes the pattern? 
-            </label><br/>
-            <img src={c3q6_I} />
-            <br />
+              <select
+                id="c3q4"
+                className="form-select"
+                name="c3q4"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="0">35</option>
+                <option value="0">36</option>
+                <option value="0">45</option>
+                <option value="10">54</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                5. The total age of Akash, Akbar and Abhishek is 80 years. What
+                was the total of their ages three years ago?
+              </label>
+              <br />
 
-            <select
-              id="c3q6"
-              className="form-select"
-              name="c3q6"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="0">1</option>
-              <option value="0">2</option>
-              <option value="0">3</option>
-              <option value="1">4</option>
-              
-            </select>
-            <br/>
-          </div>
-          <div className="mb-3">
-            <label for="c3q2" className="form-label">
-            7.  7, 10, 8, 11, 9, 12, ... What number should come next? 
-            </label>
-            <br />
+              <select
+                id="c3q5"
+                className="form-select"
+                name="c3q5"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="10">71 Years</option>
+                <option value="0">72 Years</option>
+                <option value="0">74 Years</option>
+                <option value="0">77 Years</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                6. Identify the figure that completes the pattern?
+              </label>
+              <br />
+              <img src={c3q6_I} />
+              <br />
 
-            <select
-              id="c3q7"
-              className="form-select"
-              name="c3q7"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="0">7</option>
-              <option value="10">10</option>
-              <option value="0">12</option>
-              <option value="0">13</option>
-              
-            </select>
-            <br/>
-          </div>
-          <div className="mb-3">
-            <label for="c3q2" className="form-label">
-            8. Choose the alternative which closely resembles the mirror image of the given combination.
-            </label><br/>
-            <img src={c3q8_I} />
-            <br />
+              <select
+                id="c3q6"
+                className="form-select"
+                name="c3q6"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="0">1</option>
+                <option value="0">2</option>
+                <option value="0">3</option>
+                <option value="10">4</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                7. 7, 10, 8, 11, 9, 12, ... What number should come next?
+              </label>
+              <br />
 
-            <select
-              id="c3q8"
-              className="form-select"
-              name="c3q8"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="0">1</option>
-              <option value="10">2</option>
-              <option value="0">3</option>
-              <option value="0">4</option>              
-            </select>
-            <br/>
-          </div>
-          <div className="mb-3">
-            <label for="c3q2" className="form-label">
-            9. Look at this series: 8, 6, 9, 23, 87 , ... What number should come next?
-            </label>
-            <br />
+              <select
+                id="c3q7"
+                className="form-select"
+                name="c3q7"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="0">7</option>
+                <option value="10">10</option>
+                <option value="0">12</option>
+                <option value="0">13</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                8. Choose the alternative which closely resembles the mirror
+                image of the given combination.
+              </label>
+              <br />
+              <img src={c3q8_I} />
+              <br />
 
-            <select
-              id="c3q9"
-              className="form-select"
-              name="c3q9"
-              onChange={inputsHandler}
-            >
-              <option value="0" selected>
-                Choose your Option
-              </option>
-              <option value="0">226</option>
-              <option value="0">324</option>
-              <option value="10">429</option>
-              <option value="0">537</option>              
-            </select>
-            <br/>
+              <select
+                id="c3q8"
+                className="form-select"
+                name="c3q8"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="0">1</option>
+                <option value="10">2</option>
+                <option value="0">3</option>
+                <option value="0">4</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                9. Look at this series: 8, 6, 9, 23, 87 , ... What number should
+                come next?
+              </label>
+              <br />
+
+              <select
+                id="c3q9"
+                className="form-select"
+                name="c3q9"
+                onChange={inputsHandler}
+              >
+                <option value="0" selected>
+                  Choose your Option
+                </option>
+                <option value="0">226</option>
+                <option value="0">324</option>
+                <option value="10">429</option>
+                <option value="0">537</option>
+              </select>
+              <br />
+            </div>
           </div>
-          </div>
-          
-                
+
           <br />
           <button type="submit" value="submit" className="submit btn btn-lg">
             Submit

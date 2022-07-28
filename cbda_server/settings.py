@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GROUPS_CREATED = False
 
 # Application definition
 

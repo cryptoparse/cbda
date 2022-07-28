@@ -1,37 +1,39 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./IceBreakerFormScreen.css";
-import { getUserData } from "../../Services/apis";
+import { getUserData, savePhase1 } from "../../Services/apis";
+import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
 export default function IceBreakerFormScreen() {
+  const navigate = useNavigate();
+  const cookies = new Cookies();
   const [inputField, setInputField] = useState({
     email: "",
-    q1: "",
-    q2: "",
-    q3: "",
-    q4: "",
-    q5: "",
-    q6: "",
-    q7: "",
-    q8: "",
-    q9: "",
-    q10: "",
-    q11: "",
+    q1: "op1",
+    q2: "op1",
+    q3: "op1",
+    q4: "op1",
+    q5: "op1",
+    q6: "op1",
+    q7: "op1",
+    q8: "op1",
+    q9: "op1",
+    q10: "op1",
+    q11: "op1",
   });
   useEffect(() => {
     getUserData((data) => {
-      setdata(data);
+      setInputField({ ...inputField, email: data.email });
     });
   }, []);
-  const setdata = (data) => {
-    setInputField({ ...inputField, email: data.email });
-  };
   const inputsHandler = (e) => {
     setInputField({ ...inputField, [e.target.name]: e.target.value });
   };
 
-  const submitAction = (e) => {
-    console.log(inputField.q10);
-  };
+  function submitAction(e) {
+    savePhase1(() => {}, inputField);
+    window.close();
+  }
 
   return (
     <div>
@@ -52,10 +54,11 @@ export default function IceBreakerFormScreen() {
             value={inputField.q1}
             onChange={inputsHandler}
           >
-            <option value="op1">BBA</option>
-            <option value="op2">BCom</option>
-            <option value="op3">Bsc</option>
-            <option value="op4">Law</option>
+            <option value="op1">BCOM</option>
+            <option value="op2">BBA</option>
+            <option value="op3">BSc Psychology</option>
+            <option value="op4">BBA Analytics</option>
+            <option value="op4">BCOM with ACCA</option>
           </select>
 
           <br />
@@ -73,6 +76,8 @@ export default function IceBreakerFormScreen() {
             <option value="op2">Blue</option>
             <option value="op3">Yellow</option>
             <option value="op4">Green</option>
+            <option value="op5">Pink</option>
+            <option value="op6">Black</option>
           </select>
 
           <br />

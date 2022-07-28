@@ -11,13 +11,11 @@ export default function StudentDetailsScreen() {
     phonenumber: 0,
   });
   const cookies = new Cookies();
-
-  useEffect(() => {
-    if (cookies.get("bootstrapId") != undefined) {
-    } else {
-    }
-  });
   function formSubmit() {
+    cookies.set("email", inputField.email, {
+      path: "/",
+      maxAge: 1000000,
+    });
     createUser(() => {
       window.location.href = "/iceBreaker/";
     }, inputField);

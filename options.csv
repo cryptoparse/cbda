@@ -1,0 +1,37 @@
+﻿question,option,value
+q1,op1,BCOM
+q1,op2,BBA
+q1,op3,BSC
+q1,op4,Law
+q2,op1,Red
+q2,op2,Blue
+q2,op3,Green
+q2,op4,Yellow
+q3,op1,Math
+q3,op2,Science
+q3,op3,Social studies
+q3,op4,Geography 
+q4,op1,Batman
+q4,op2,Superman
+q4,op3,Wonder woman
+q4,op4,Flash
+q5,op1,Thriller
+q5,op2,Drama 
+q5,op3,Action 
+q5,op4,Horror
+q5,op5,Comedy
+q5,op6,Romance
+q6,op1,Android
+q6,op2,IOS 
+q7,op1,Series 
+q7,op2,Movies 
+q8,op1,Dine in 
+q8,op2,Takeaway or online order
+q9,op1,Paper-book 
+q9,op2,PDF or online
+q10,op1,Mountains 
+q10,op2,Beaches
+q11,op1,Cats 
+q11,op2,Dogs 
+q11,op3,Birds
+q11,op4,Fish
