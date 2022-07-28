@@ -2,9 +2,10 @@
 from rest_framework import generics,views,status
 from rest_framework.response import Response
 from .serializers import EventUserSerializer, Phase1Serializer
-from .models import EventUser
+from .models import EventUser, Group, Phase1
 from django.forms.models import model_to_dict
 from .phase1  import getGroups
+import pandas as pd
 # Create your views here.
 from django.utils.crypto import get_random_string
 class EventUserViewSet(generics.ListCreateAPIView):
@@ -66,7 +67,7 @@ class Phase1View(views.APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CreateGroupsView(views.APIView):
+class AllGroupData(views.APIView):
     def post(self,request):
         
         grouplist = getGroups(15)
@@ -76,5 +77,13 @@ class CreateGroupsView(views.APIView):
 
 class GetGroupNumber(views.APIView):
     def post(self,request):
-        
+        user = Group.objects.get(email = request)
+        print(type)
+
+class CreateGroups(views.APIView):
+    def post(self,request):
+        allGroups = pd.DataFrame(list(Phase1.objects.all()))
+        groups = getGroups(15,allGroups)
+        for index,row in groups.iterrows():
+            objs = myGroup()
         
