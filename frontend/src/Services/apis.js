@@ -373,3 +373,23 @@ export async function checkGroupingDone(callback) {
       console.log(err);
     });
 }
+
+export async function getAllResult(callback) {
+  fetch("/getAllResult/", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error(response.status);
+      else return response.json();
+    })
+    .then((res) => {
+      callback(res.ResList);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

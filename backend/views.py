@@ -75,11 +75,17 @@ class Phase1View(views.APIView):
 #
 class AllGroupData(views.APIView):
     def post(self,request):     
-        gp = Group.objects.all()
+        gp = Group.objects.all().order_by('email')
         serializer_class = gpSerialiser(gp,many=True)        
-        
-        return Response({'GroupList':serializer_class.data},status=status.HTTP_200_OK)
-
+        data = serializer_class.data
+        usr = EventUser.objects.all()        
+    
+        return Response({'GroupList':data},status=status.HTTP_200_OK)
+class AllResult(views.APIView):
+    def post(self,request):
+        res = Phase2.objects.all().order_by('totalscore')
+        serializer_class = Phase2Serializer(res,many=True)                          
+        return Response({'ResList':serializer_class.data},status=status.HTTP_200_OK)
 #
 class GetGroupNumber(views.APIView):
     def post(self,request):

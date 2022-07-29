@@ -14,6 +14,8 @@ import WaitingScreen from "./Screens/WaitingScreen/WaitingScreen";
 import ResultQRScreen from "./Screens/ResultQRScreen/ResultQRScreen";
 import GroupScreen from "./Screens/GroupScreen/GroupScreen";
 import TableScreen from "./Screens/TableScreen/TableScreen";
+import ExcelAtExcelDisplayScreen from "./Screens/ExcelAtExcelDisplayScreen/ExcelAtExcelDisplayScreen";
+import TableResScreen from "./Screens/TableResScreen/TableResScreen";
 export default function App() {
   return (
     <div>
@@ -35,6 +37,8 @@ export default function App() {
               <Route path="resultQR" element={<ResultQRScreen />} />
               <Route path="groupDisplay" element={<GroupScreen />} />
               <Route path="groupTable" element={<TableScreen />} />
+              <Route path="excelAtExcelDisplay" element={<ExcelAtExcelDisplayScreen/>} />
+              <Route path="allP2Result" element={<TableResScreen />} />
             </Routes>
           </BrowserRouter>
         </div>

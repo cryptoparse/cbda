@@ -15,4 +15,6 @@ urlpatterns = [
     path('groupDisplay/',views.index),
     path('resultQR/',views.index),
     path('groupTable/',views.index),
+    path('excelAtExcelDisplay/',views.index),
+    path('allP2Result/',views.index)
 ]
