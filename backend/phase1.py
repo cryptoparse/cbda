@@ -12,11 +12,8 @@ def getFilter(q,o):
     return qoptions['value'][(qoptions['question'] == q) & (qoptions['option'] == o) ].values[0]
 def getGroups(groupSize=20,df=None,qoptions=None):
 
-    current_directory = os.getcwd()    
-    file_d = current_directory + '/options.csv'
-    print(file_d)
+    
     groupingList = pd.DataFrame(columns=['email','group','filter1','filter2','filter3'])
-    '''
     combiList = list(itertools.combinations(range(1, 11), r=3))
     a = 1
     b = 2
@@ -69,7 +66,7 @@ def getGroups(groupSize=20,df=None,qoptions=None):
                 dflast = {'email':email,'group':groupno,'filter1':fv1rest,'filter2':fv2rest,'filter3':fv3rest}
                 groupingList =  groupingList.append(dflast,ignore_index=True)
                 gno+=1       
-                '''
+            
     return groupingList
 
 def getGroups2Crit(groupSize=20,df=None,qoptions=None,currentGroupNo=1):
