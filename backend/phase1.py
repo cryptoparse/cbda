@@ -6,7 +6,7 @@ import os
 
 def getFilter(q,o):
     current_directory = os.getcwd()    
-    file_d = current_directory + '/options.csv'
+    file_d = current_directory + '/cbda/backend/options.csv'
     print(file_d)
     qoptions = pd.read_csv('options.csv')
     return qoptions['value'][(qoptions['question'] == q) & (qoptions['option'] == o) ].values[0]
