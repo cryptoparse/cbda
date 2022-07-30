@@ -1,9 +1,12 @@
 import pandas as pd
 import itertools
+import os
 
 
 
 def getFilter(q,o):
+    current_directory = os.getcwd()
+    file_d = current_directory + '/options.csv'
     qoptions = pd.read_csv('options.csv')
     return qoptions['value'][(qoptions['question'] == q) & (qoptions['option'] == o) ].values[0]
 def getGroups(groupSize=20,df=None,qoptions=None):
