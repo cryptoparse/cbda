@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router';
 function WelcomeScreen() {
   let navigate = useNavigate();
   const startEvent=()=>{
-   navigate('/teamifi') 
+   navigate('/studentRegister') 
   }
   return (
     <div>
