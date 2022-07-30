@@ -1,12 +1,15 @@
 ﻿question,option,value
 q1,op1,BCOM
 q1,op2,BBA
-q1,op3,BSC
-q1,op4,Law
+q1,op3,BSC Psychology
+q1,op4,BBA Analytics
+q1,op5,BCOM with ACCA
 q2,op1,Red
 q2,op2,Blue
 q2,op3,Green
 q2,op4,Yellow
+q2,op5,Pink
+q2,op6,Black
 q3,op1,Math
 q3,op2,Science
 q3,op3,Social studies
