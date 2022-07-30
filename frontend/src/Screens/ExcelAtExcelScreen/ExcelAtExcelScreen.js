@@ -152,6 +152,7 @@ export default function ExcelAtExcelScreen() {
               placeholder="Enter The answer"
               className="form-control"
               onChange={inputsHandler}
+              required
             />
           </div>
           <br />
@@ -168,8 +169,9 @@ export default function ExcelAtExcelScreen() {
               className="form-select"
               name="c1q1"
               onChange={inputsHandler}
+              required
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="10">White Rasgulla (1 Pc)</option>
@@ -195,6 +197,7 @@ export default function ExcelAtExcelScreen() {
               placeholder="Enter The answer"
               className="form-control"
               onChange={inputFieldHandler}
+              required
             />
           </div>
           <br />
@@ -213,6 +216,7 @@ export default function ExcelAtExcelScreen() {
               placeholder="Enter The answer"
               className="form-control"
               onChange={inputFieldHandler}
+              required
             />
           </div>
           <br />
@@ -228,8 +232,9 @@ export default function ExcelAtExcelScreen() {
               className="form-select"
               name="c1q4"
               onChange={inputsHandler}
+              required
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="4">15th Hour</option>
@@ -250,8 +255,9 @@ export default function ExcelAtExcelScreen() {
               className="form-select"
               name="c1q5"
               onChange={inputsHandler}
+              required
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="2">City 19</option>
@@ -274,8 +280,9 @@ export default function ExcelAtExcelScreen() {
               className="form-select"
               name="c1q6"
               onChange={inputsHandler}
+              required
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="6">Kaju Barfi</option>
@@ -303,6 +310,7 @@ export default function ExcelAtExcelScreen() {
               placeholder="Enter The answer"
               className="form-control"
               onChange={inputFieldHandler}
+              required
             />
           </div>
 
@@ -318,8 +326,9 @@ export default function ExcelAtExcelScreen() {
               className="form-select"
               name="c2q2"
               onChange={inputsHandler}
+              required
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="2">Data Engineer</option>
@@ -344,8 +353,9 @@ export default function ExcelAtExcelScreen() {
               className="form-select"
               name="c2q3"
               onChange={inputsHandler}
+              required
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="10">Company 17</option>
@@ -370,6 +380,7 @@ export default function ExcelAtExcelScreen() {
               placeholder="Enter The answer"
               className="form-control"
               onChange={inputFieldHandler}
+              required
             />
           </div>
 
@@ -386,6 +397,7 @@ export default function ExcelAtExcelScreen() {
               id="c2q5"
               type="number"
               step="any"
+              required
               name="c2q5"
               placeholder="Enter The answer"
               className="form-control"
@@ -414,6 +426,7 @@ export default function ExcelAtExcelScreen() {
               placeholder="2020 to 2021"
               className="form-control"
               onChange={inputFieldHandler}
+              required
             />
             <br />
             <label for="c2q6a" className="form-label">
@@ -427,6 +440,7 @@ export default function ExcelAtExcelScreen() {
               placeholder="2021 to 2022"
               className="form-control"
               onChange={inputFieldHandler}
+              required
             />
           </div>
           <div>
@@ -446,8 +460,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q1"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">GOOD</option>
@@ -470,8 +485,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q2"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">8</option>
@@ -494,8 +510,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q3"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">Rs 651</option>
@@ -517,8 +534,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q4"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">35</option>
@@ -540,8 +558,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q5"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="10">71 Years</option>
@@ -564,8 +583,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q6"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">1</option>
@@ -586,8 +606,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q7"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">7</option>
@@ -611,8 +632,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q8"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">1</option>
@@ -634,8 +656,9 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q9"
                 onChange={inputsHandler}
+                required
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">226</option>

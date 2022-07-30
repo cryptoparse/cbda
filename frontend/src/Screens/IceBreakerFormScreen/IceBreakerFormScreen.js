@@ -9,17 +9,17 @@ export default function IceBreakerFormScreen() {
   const cookies = new Cookies();
   const [inputField, setInputField] = useState({
     email: "",
-    q1: "op1",
-    q2: "op1",
-    q3: "op1",
-    q4: "op1",
-    q5: "op1",
-    q6: "op1",
-    q7: "op1",
-    q8: "op1",
-    q9: "op1",
-    q10: "op1",
-    q11: "op1",
+    q1: "",
+    q2: "",
+    q3: "",
+    q4: "",
+    q5: "",
+    q6: "",
+    q7: "",
+    q8: "",
+    q9: "",
+    q10: "",
+    q11: "",
   });
   useEffect(() => {
     getUserData((data) => {
@@ -31,8 +31,10 @@ export default function IceBreakerFormScreen() {
   };
 
   function submitAction(e) {
-    savePhase1(() => {}, inputField);
-    window.close();
+    savePhase1(() => {}, inputField).then(
+
+    )
+    
   }
 
   return (
@@ -53,7 +55,8 @@ export default function IceBreakerFormScreen() {
             name="q1"
             value={inputField.q1}
             onChange={inputsHandler}
-          >
+            required
+          > <option selected value="">Chose an Option</option>
             <option value="op1">BCOM</option>
             <option value="op2">BBA</option>
             <option value="op3">BSc Psychology</option>
@@ -71,7 +74,8 @@ export default function IceBreakerFormScreen() {
             name="q2"
             value={inputField.q2}
             onChange={inputsHandler}
-          >
+            required
+          > <option selected value="">Chose an Option</option>
             <option value="op1">Red</option>
             <option value="op2">Blue</option>
             <option value="op3">Yellow</option>
@@ -90,7 +94,8 @@ export default function IceBreakerFormScreen() {
             name="q3"
             value={inputField.q3}
             onChange={inputsHandler}
-          >
+            required
+          ><option selected value="">Chose an Option</option>
             <option value="op1">Math</option>
             <option value="op2">Science</option>
             <option value="op3">Social Studies</option>
@@ -107,7 +112,8 @@ export default function IceBreakerFormScreen() {
             name="q4"
             value={inputField.q4}
             onChange={inputsHandler}
-          >
+            required
+          ><option selected value="">Chose an Option</option>
             <option value="op1">Batman</option>
             <option value="op2">Superman</option>
             <option value="op3">Wonder Woman</option>
@@ -124,7 +130,8 @@ export default function IceBreakerFormScreen() {
             name="q5"
             value={inputField.q5}
             onChange={inputsHandler}
-          >
+            required
+          ><option selected value="">Chose an Option</option>
             <option value="op1">Thriller</option>
             <option value="op2">Drama</option>
             <option value="op3">Action</option>
@@ -142,7 +149,8 @@ export default function IceBreakerFormScreen() {
             name="q6"
             value={inputField.q6}
             onChange={inputsHandler}
-          >
+            required
+          ><option selected value="">Chose an Option</option>
             <option value="op1">Android</option>
             <option value="op2">IOS</option>
           </select>
@@ -156,7 +164,8 @@ export default function IceBreakerFormScreen() {
             name="q7"
             value={inputField.q7}
             onChange={inputsHandler}
-          >
+            required
+          ><option selected value="">Chose an Option</option>
             <option value="op1">Series</option>
             <option value="op2">Movies</option>
           </select>
@@ -170,7 +179,8 @@ export default function IceBreakerFormScreen() {
             name="q8"
             value={inputField.q8}
             onChange={inputsHandler}
-          >
+            required
+          ><option selected value="">Chose an Option</option>
             <option value="op1">Dine in </option>
             <option value="op2">Takeaway or Online Order</option>
           </select>
@@ -184,7 +194,9 @@ export default function IceBreakerFormScreen() {
             name="q9"
             value={inputField.q9}
             onChange={inputsHandler}
+            required
           >
+            <option selected value="">Chose an Option</option>
             <option value="op1">Paper-book</option>
             <option value="op2">PDF or Online</option>
           </select>
@@ -198,7 +210,8 @@ export default function IceBreakerFormScreen() {
             name="q10"
             value={inputField.q10}
             onChange={inputsHandler}
-          >
+            required
+          ><option selected value="">Chose an Option</option>          
             <option value="op1">Mountains</option>
             <option value="op2">Beaches</option>
           </select>
@@ -212,7 +225,8 @@ export default function IceBreakerFormScreen() {
             name="q11"
             value={inputField.q11}
             onChange={inputsHandler}
-          >
+            required
+          ><option selected value="">Chose an Option</option>
             <option value="op1">Cats</option>
             <option value="op2">Dogs</option>
             <option value="op3">Birds</option>
