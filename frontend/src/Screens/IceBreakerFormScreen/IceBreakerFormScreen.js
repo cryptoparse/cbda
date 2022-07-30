@@ -32,7 +32,7 @@ export default function IceBreakerFormScreen() {
 
   function submitAction(e) {
     savePhase1(() => {}, inputField).then(
-
+          navigate('/waitingForGroup')
     )
     
   }

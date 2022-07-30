@@ -11,7 +11,7 @@ urlpatterns = [
     path('iceBreaker/', views.index ),
     path('adminctrlpanel/', views.index ),
     path('groupReport/',views.index),
-    path('waiting/',views.index),
+    path('waitingForGroup/',views.index),
     path('groupDisplay/',views.index),
     path('resultQR/',views.index),
     path('groupTable/',views.index),

@@ -355,12 +355,16 @@ export async function clearFlush(callback, inputField) {
 }
 
 export async function checkGroupingDone(callback) {
+  const cookies = new Cookies();
+  const mail = cookies.get('email');
   fetch("/checkGroupingDone/", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-    },
+    },body:JSON.stringify({
+      email:mail
+    }),
   })
     .then((response) => {
       if (!response.ok) throw new Error(response.status);

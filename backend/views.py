@@ -1,4 +1,5 @@
 
+import email
 from rest_framework import generics,views,status
 from rest_framework.response import Response
 from .serializers import ActionStageSerializer, EventUserSerializer, Phase1Serializer, Phase2Serializer, gpSerialiser
@@ -22,6 +23,10 @@ class EventUserView(views.APIView):
     def post(self,request):
         userData = request.data
         sessionTk =  get_random_string(length=32)
+        if EventUser.objects.filter(email=userData['email']).exists():
+            user = EventUser.objects.get(email=userData["email"])
+            userret = model_to_dict(user)
+            return Response({'bootstrapId':userret['auth']}, status=status.HTTP_200_OK)                    
         while True:
             try:
                     sessObj = EventUser.objects.get(auth = sessionTk)
@@ -212,6 +217,7 @@ class DeleteAll(views.APIView):
         
 class GetGroupingProgress(views.APIView):
     def post(self,request):
-        if(settings.GROUPS_CREATED == True):
+        data = request.data        
+        if Group.objects.filter(email=data["email"]).exists():
             return Response({'Action':'YES'},status=status.HTTP_200_OK)
         return Response({'Action':'NO'},status=status.HTTP_200_OK)

@@ -29,11 +29,11 @@ export default function App() {
                 path="studentRegister"
                 element={<StudentDetailsScreen />}
               />
-              <Route path="iceBreaker" element={<IceBreakerFormScreen />} />
+              <Route path="teamifi" element={<IceBreakerFormScreen />} />
               <Route path="groupReport" element={<ReportScreen />} />
               <Route path="excelAtExcel" element={<ExcelAtExcelScreen />} />
               <Route path="adminctrlpanel" element={<AdminPanelScreen />} />
-              <Route path="waiting" element={<WaitingScreen />} />
+              <Route path="waitingForGroup" element={<WaitingScreen />} />
               <Route path="resultQR" element={<ResultQRScreen />} />
               <Route path="groupDisplay" element={<GroupScreen />} />
               <Route path="groupTable" element={<TableScreen />} />

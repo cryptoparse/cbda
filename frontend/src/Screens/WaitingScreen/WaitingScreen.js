@@ -6,21 +6,25 @@ import {
   getGroupNumber,
   getUserData,
 } from "../../Services/apis";
+import {  useNavigate } from "react-router-dom";
 
 function WaitingScreen() {
+  let navigate = useNavigate()
+  
   useEffect(() => {
+      
     loadingRef.current.loadingOn();
-    checkGroupingDone((status) => {
-      if (status === "YES") {
-        getUserData((user) => {
-          getGroupNumber((group) => {
-            window.location.href = "/groupDisplay";
-          }, user.email);
-        });
-      } else {
-      }
-    });
-  });
+    const interval = setInterval(() => {
+      checkGroupingDone((res) => {
+        console.log(res)
+        if (res === "YES") {          
+            navigate('/groupDisplay')
+        } else {
+        }
+      })
+    }, 2000)
+    return () => clearInterval(interval);
+  },[]);
   const loadingRef = useRef();
 
   return (

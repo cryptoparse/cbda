@@ -4,7 +4,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import useForm from "../../hooks/formValidate";
 import Cookies from "universal-cookie";
 import { createUser, getUserData } from "./../../Services/apis";
+import { useNavigate } from "react-router-dom";
 export default function StudentDetailsScreen() {
+  let navigate = useNavigate()
   const [inputField, setInputField] = useState({
     username: "",
     email: "",
@@ -17,7 +19,7 @@ export default function StudentDetailsScreen() {
       maxAge: 1000000,
     });
     createUser(() => {
-      window.location.href = "/iceBreaker/";
+      navigate('/teamifi')
     }, inputField);
   }
   const { handleChange, errors, handleSubmit } = useForm(formSubmit);
@@ -88,10 +90,10 @@ export default function StudentDetailsScreen() {
           </div>
         )}
         <br />
-
-        <button type="submit" value="submit" className="submit btn btn-lg">
+        <div className="d-flex flex-column mb-3">
+        <button type="submit" value="submit" className="submit btn btn-lg p-2">
           Submit
-        </button>
+        </button></div>
       </form>
     </div>
   );
