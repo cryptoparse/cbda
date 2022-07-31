@@ -27,7 +27,7 @@ class EventUserView(views.APIView):
         if EventUser.objects.filter(email=userData['email']).exists():
             user = EventUser.objects.get(email=userData["email"])
             userret = model_to_dict(user)
-            return Response({'bootstrapId':userret['auth']}, status=status.HTTP_200_OK)                    
+            return Response({'bootstrapId':userret['auth'],'exists':True}, status=status.HTTP_200_OK)                    
         while True:
             try:
                     sessObj = EventUser.objects.get(auth = sessionTk)
@@ -42,7 +42,7 @@ class EventUserView(views.APIView):
         serializer = EventUserSerializer(data=userData)
         if serializer.is_valid():
             serializer.save()
-            return Response({'bootstrapId':sessionTk}, status=status.HTTP_200_OK)
+            return Response({'bootstrapId':sessionTk,'exists':False}, status=status.HTTP_200_OK)
         else:
             return Response({'bootstrapId':sessionTk}, status=status.HTTP_200_OK)
 #
@@ -71,7 +71,8 @@ class EventStatusView(views.APIView):
 class Phase1View(views.APIView):
     def post(self,request):
         p1response = request.data
-        
+        if(Phase1.objects.filter(email=p1response["email"]).exists()):
+            return Response({'Response':'Unsuccessful'}, status=status.HTTP_200_OK)
         serializer = Phase1Serializer(data=p1response)
         if serializer.is_valid():
             serializer.save()

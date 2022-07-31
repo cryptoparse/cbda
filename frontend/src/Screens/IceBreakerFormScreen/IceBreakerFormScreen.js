@@ -31,10 +31,11 @@ export default function IceBreakerFormScreen() {
   };
 
   function submitAction(e) {
-    savePhase1(() => {}, inputField).then(
-          navigate('/waitingForGroup')
-    )
-    
+    savePhase1((res) => {
+      if (res.Response == "Unsuccessful") {
+        alert("Cannot choose again! Going to next phase.");
+      }
+    }, inputField).then(navigate("/waitingForGroup"));
   }
 
   return (
@@ -56,7 +57,11 @@ export default function IceBreakerFormScreen() {
             value={inputField.q1}
             onChange={inputsHandler}
             required
-          > <option selected value="">Chose an Option</option>
+          >
+            {" "}
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">BCOM</option>
             <option value="op2">BBA</option>
             <option value="op3">BSc Psychology</option>
@@ -75,7 +80,11 @@ export default function IceBreakerFormScreen() {
             value={inputField.q2}
             onChange={inputsHandler}
             required
-          > <option selected value="">Chose an Option</option>
+          >
+            {" "}
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Red</option>
             <option value="op2">Blue</option>
             <option value="op3">Yellow</option>
@@ -95,7 +104,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q3}
             onChange={inputsHandler}
             required
-          ><option selected value="">Chose an Option</option>
+          >
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Math</option>
             <option value="op2">Science</option>
             <option value="op3">Social Studies</option>
@@ -113,7 +125,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q4}
             onChange={inputsHandler}
             required
-          ><option selected value="">Chose an Option</option>
+          >
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Batman</option>
             <option value="op2">Superman</option>
             <option value="op3">Wonder Woman</option>
@@ -131,7 +146,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q5}
             onChange={inputsHandler}
             required
-          ><option selected value="">Chose an Option</option>
+          >
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Thriller</option>
             <option value="op2">Drama</option>
             <option value="op3">Action</option>
@@ -150,7 +168,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q6}
             onChange={inputsHandler}
             required
-          ><option selected value="">Chose an Option</option>
+          >
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Android</option>
             <option value="op2">IOS</option>
           </select>
@@ -165,7 +186,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q7}
             onChange={inputsHandler}
             required
-          ><option selected value="">Chose an Option</option>
+          >
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Series</option>
             <option value="op2">Movies</option>
           </select>
@@ -180,7 +204,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q8}
             onChange={inputsHandler}
             required
-          ><option selected value="">Chose an Option</option>
+          >
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Dine in </option>
             <option value="op2">Takeaway or Online Order</option>
           </select>
@@ -196,7 +223,9 @@ export default function IceBreakerFormScreen() {
             onChange={inputsHandler}
             required
           >
-            <option selected value="">Chose an Option</option>
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Paper-book</option>
             <option value="op2">PDF or Online</option>
           </select>
@@ -211,7 +240,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q10}
             onChange={inputsHandler}
             required
-          ><option selected value="">Chose an Option</option>          
+          >
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Mountains</option>
             <option value="op2">Beaches</option>
           </select>
@@ -226,7 +258,10 @@ export default function IceBreakerFormScreen() {
             value={inputField.q11}
             onChange={inputsHandler}
             required
-          ><option selected value="">Chose an Option</option>
+          >
+            <option selected value="">
+              Chose an Option
+            </option>
             <option value="op1">Cats</option>
             <option value="op2">Dogs</option>
             <option value="op3">Birds</option>

@@ -90,7 +90,7 @@ export async function savePhase1(callback, inputField) {
       else return response.json();
     })
     .then((res) => {
-      callback();
+      callback(res);
     })
 
     .catch((err) => {
