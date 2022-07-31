@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('getResult/',views.GetResultView.as_view()), #
     path('getAllResult/',views.AllResult.as_view()), #
+    path('checkIfResult/',views.CheckIfResults.as_view()),
     
 
     # Last

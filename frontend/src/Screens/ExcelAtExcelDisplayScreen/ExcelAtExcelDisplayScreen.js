@@ -1,9 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import c3q2_I from "../../assets/images/c3q2.png";
 import c3q6_I from "../../assets/images/c3q6.png";
 import c3q8_I from "../../assets/images/c3q8.png";
-import { savePhase2Result } from "../../Services/apis";
-export default function ExcelAtExcelDisplayScreen() {
+import {
+  getUserData,
+  getGroupNumber,
+  checkIfResult,
+} from "../../Services/apis";
+import { useNavigate } from "react-router";
+export default function ExcelAtExcelScreen() {
+  let navigate = useNavigate();
+  const [gpNum, setGN] = useState(null);
+  useEffect(() => {
+    getUserData((user) => {
+      getGroupNumber((group) => {
+        setGN(group);
+      }, user.email);
+    });
+  }, []);
+  const startEventPhase2 = () => {
+    checkIfResult(gpNum, (resp) => {
+      if (resp == "YES") {
+        navigate("/groupReport/");
+        navigate(1);
+      } else {
+        alert("Please Submit your Team Response");
+      }
+    });
+  };
   const [inputField, setInputField] = useState({
     group: "",
     c1q1: 0,
@@ -29,12 +53,7 @@ export default function ExcelAtExcelDisplayScreen() {
     c3q8: 0,
     c3q9: 0,
   });
-  const gpinputsHandler = (e) => {
-    setInputField({
-      ...inputField,
-      [e.target.name]: "Group ".concat(String(e.target.value)),
-    });
-  };
+
   const inputsHandler = (e) => {
     setInputField({ ...inputField, [e.target.name]: Number(e.target.value) });
   };
@@ -78,83 +97,31 @@ export default function ExcelAtExcelDisplayScreen() {
 
     setInputField({ ...inputField, [e.target.name]: score });
   };
-  const submitAction = (e) => {
-    let finalTotal = Object.values(inputField).reduce(
-      (total, value) => total + value,
-      0
-    );
-    let finalScore = parseFloat((finalTotal / 220) * 100).toFixed(2);
-    let logicalScore = parseFloat(
-      (100 *
-        (inputField.c1q3 +
-          inputField.c1q4 +
-          inputField.c2q3 +
-          inputField.c2q5 +
-          inputField.c3q1 +
-          inputField.c3q2 +
-          inputField.c3q8)) /
-        70
-    ).toFixed(2);
-    let excelScore = parseFloat(
-      (100 *
-        (inputField.c1q1 +
-          inputField.c1q2 +
-          inputField.c1q3 +
-          inputField.c2q2 +
-          inputField.c2q4)) /
-        50
-    ).toFixed(2);
-    let mathScore = parseFloat(
-      (100 *
-        (inputField.c1q1 +
-          inputField.c2q1 +
-          inputField.c2q4 +
-          inputField.c2q6a +
-          inputField.c2q6b +
-          inputField.c3q3 +
-          inputField.c3q4 +
-          inputField.c3q5)) /
-        80
-    ).toFixed(2);
-    let analyticScore = parseFloat(
-      (100 *
-        (inputField.c1q5 +
-          inputField.c1q6 +
-          inputField.c2q3 +
-          inputField.c2q5 +
-          inputField.c3q6 +
-          inputField.c3q9)) /
-        60
-    ).toFixed(2);
-
-    savePhase2Result({
-      group: "Group ".concat(String(inputField.group)),
-      totalscore: finalScore,
-      logicalscore: logicalScore,
-      excelscore: excelScore,
-      mathscore: mathScore,
-      analyticalscore: analyticScore,
-    });
-  };
 
   return (
     <div>
       <div>
-        <form onSubmit={submitAction}>
-          <div className="mb-3">
-            <h1>Enter Group number</h1>
-            <br />
-            <input
-              id="group"
-              type="number"
-              name="group"
-              step="any"
-              placeholder="Enter The answer"
-              className="form-control"
-              onChange={inputsHandler}
-            />
-          </div>
+        <form>
           <br />
+          <div>
+            <div className="d-grid gap-2 border pd-2 border-success">
+              <h2 className="p-2">You Belong to {gpNum}</h2>
+              <p className="form-label p-2">
+                <b>Instructions :</b> Please read the caselets and the questions
+                below. Solve the questions. Once done, ask your respective
+                volunteers to assist your team in submitting your answers
+              </p>
+              <div className="d-flex flex-column bd-highlight mb-3">
+                <button
+                  type="button"
+                  className="btn btn-lg"
+                  onClick={startEventPhase2}
+                >
+                  CHECK YOUR RESULTS
+                </button>
+              </div>
+            </div>
+          </div>
           <h1>Case 1: Swiggy Data - Pre and Post Diwali</h1>
           <br />
           <div className="mb-3">
@@ -169,7 +136,7 @@ export default function ExcelAtExcelDisplayScreen() {
               name="c1q1"
               onChange={inputsHandler}
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="10">White Rasgulla (1 Pc)</option>
@@ -229,7 +196,7 @@ export default function ExcelAtExcelDisplayScreen() {
               name="c1q4"
               onChange={inputsHandler}
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="4">15th Hour</option>
@@ -251,7 +218,7 @@ export default function ExcelAtExcelDisplayScreen() {
               name="c1q5"
               onChange={inputsHandler}
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="2">City 19</option>
@@ -275,7 +242,7 @@ export default function ExcelAtExcelDisplayScreen() {
               name="c1q6"
               onChange={inputsHandler}
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="6">Kaju Barfi</option>
@@ -291,7 +258,7 @@ export default function ExcelAtExcelDisplayScreen() {
           <br />
           <div className="mb-3">
             <label for="c2q1" className="form-label">
-              1. Find the average salary in a small size company
+              1. Find the average salary in a small size company (in USD)
             </label>
             <br />
 
@@ -319,7 +286,7 @@ export default function ExcelAtExcelDisplayScreen() {
               name="c2q2"
               onChange={inputsHandler}
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="2">Data Engineer</option>
@@ -345,7 +312,7 @@ export default function ExcelAtExcelDisplayScreen() {
               name="c2q3"
               onChange={inputsHandler}
             >
-              <option value="0" selected>
+              <option value="" selected>
                 Choose your Option
               </option>
               <option value="10">Company 17</option>
@@ -431,7 +398,7 @@ export default function ExcelAtExcelDisplayScreen() {
           </div>
           <div>
             <br />
-            <h1>Case 3: Locgicl and Analytical Reasoning</h1>
+            <h1>Case 3: Logical and Analytical Reasoning</h1>
             <br />
             <div className="mb-3">
               <label for="c3q1" className="form-label">
@@ -447,7 +414,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q1"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">GOOD</option>
@@ -471,7 +438,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q2"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">8</option>
@@ -495,7 +462,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q3"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">Rs 651</option>
@@ -518,7 +485,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q4"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">35</option>
@@ -541,7 +508,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q5"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="10">71 Years</option>
@@ -565,7 +532,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q6"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">1</option>
@@ -587,7 +554,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q7"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">7</option>
@@ -612,7 +579,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q8"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">1</option>
@@ -635,7 +602,7 @@ export default function ExcelAtExcelDisplayScreen() {
                 name="c3q9"
                 onChange={inputsHandler}
               >
-                <option value="0" selected>
+                <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">226</option>
@@ -648,7 +615,6 @@ export default function ExcelAtExcelDisplayScreen() {
           </div>
 
           <br />
-          
         </form>
       </div>
     </div>

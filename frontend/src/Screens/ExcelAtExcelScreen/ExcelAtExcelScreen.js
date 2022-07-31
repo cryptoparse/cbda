@@ -128,7 +128,7 @@ export default function ExcelAtExcelScreen() {
     ).toFixed(2);
 
     savePhase2Result({
-      group: "Group ".concat(String(inputField.group)),
+      group: "Team ".concat(String(inputField.group)),
       totalscore: finalScore,
       logicalscore: logicalScore,
       excelscore: excelScore,

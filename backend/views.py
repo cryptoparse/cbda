@@ -2,6 +2,7 @@
 import email
 from rest_framework import generics,views,status
 from rest_framework.response import Response
+from yaml import serialize
 from .serializers import ActionStageSerializer, EventUserSerializer, Phase1Serializer, Phase2Serializer, gpSerialiser
 from .models import ActionStage, EventUser, Group, Phase1, Phase2
 from django.forms.models import model_to_dict
@@ -80,7 +81,7 @@ class Phase1View(views.APIView):
 #
 class AllGroupData(views.APIView):
     def post(self,request):     
-        gp = Group.objects.all().order_by('email')
+        gp = Group.objects.all().order_by('group')
         serializer_class = gpSerialiser(gp,many=True)        
         data = serializer_class.data
         usr = EventUser.objects.all()        
@@ -94,8 +95,7 @@ class AllResult(views.APIView):
 #
 class GetGroupNumber(views.APIView):
     def post(self,request):
-        data = request.data
-        print(data)
+        data = request.data        
         emailID =data["email"]
         try:
             grouprow = Group.objects.get(email = emailID)
@@ -156,6 +156,14 @@ class Phase2View(views.APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 #
+class CheckIfResults(views.APIView):
+    def post(self,request):
+        p2result = request.data        
+        if(Phase2.objects.filter(group=p2result["group"]).exists()):            
+            return Response({'Response':'YES'},status=status.HTTP_200_OK)        
+        return Response({'Response':'NO'},status=status.HTTP_200_OK)
+
+
 class GetResultView(views.APIView):
     def post(self,request):
         authdata = request.data

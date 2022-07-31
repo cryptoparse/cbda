@@ -4,6 +4,7 @@ import "./style.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { getResult } from "../../Services/apis";
 import logo from "../../assets/images/CBDA_logo_png.png";
+import AnsHtml from "../../components/Answers.html";
 export default function ReportScreen() {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -42,8 +43,8 @@ export default function ReportScreen() {
           <div className="col-md-12">
             <div ref={componentRef} className="card">
               <div className="row">
-                <div class="float__start m-3 col-md-8">
-                  <h3 class="card-title mb-0 ">Group Analysis Report</h3>
+                <div className="float__start m-3 col-md-8">
+                  <h3 className="card-title mb-0 ">Group Analysis Report</h3>
                   <hr />
                   <label>Email ID : {report.email}</label>
                   <br />
@@ -61,7 +62,7 @@ export default function ReportScreen() {
                 </div>
               </div>
               <hr />
-              <div class="float__infoss  m-3">
+              <div className="float__infoss  m-3">
                 <div>
                   <label>
                     Grouping Filters : {report.filter.filter1},{" "}
@@ -112,6 +113,10 @@ export default function ReportScreen() {
                   now={report.score.analyticalscore}
                 />
                 <br />
+                <hr />
+                <div>
+                  <div dangerouslySetInnerHTML={{ __html: AnsHtml }} />
+                </div>
               </div>
             </div>
           </div>

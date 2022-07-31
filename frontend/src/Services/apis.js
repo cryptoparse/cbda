@@ -356,14 +356,15 @@ export async function clearFlush(callback, inputField) {
 
 export async function checkGroupingDone(callback) {
   const cookies = new Cookies();
-  const mail = cookies.get('email');
+  const mail = cookies.get("email");
   fetch("/checkGroupingDone/", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-    },body:JSON.stringify({
-      email:mail
+    },
+    body: JSON.stringify({
+      email: mail,
     }),
   })
     .then((response) => {
@@ -392,6 +393,29 @@ export async function getAllResult(callback) {
     })
     .then((res) => {
       callback(res.ResList);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export async function checkIfResult(group, callback) {
+  fetch("/checkIfResult/", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      group: group,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error(response.status);
+      else return response.json();
+    })
+    .then((res) => {
+      callback(res.Response);
     })
     .catch((err) => {
       console.log(err);

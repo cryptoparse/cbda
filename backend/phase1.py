@@ -1,13 +1,12 @@
 import pandas as pd
 import itertools
 import os
-
+import random
 
 
 def getFilter(q,o):
     current_directory = os.getcwd()    
-    file_d = current_directory + '/cbda/backend/options.csv'
-    print(file_d)
+    file_d = current_directory + '/cbda/backend/options.csv'   
     qoptions = pd.read_csv('options.csv')
     return qoptions['value'][(qoptions['question'] == q) & (qoptions['option'] == o) ].values[0]
 def getGroups(groupSize=20,df=None,qoptions=None):
@@ -41,7 +40,7 @@ def getGroups(groupSize=20,df=None,qoptions=None):
                 fv1 = getFilter(qa,f1)
                 fv2 = getFilter(qb,f2)
                 fv3 = getFilter(qc,f3)
-                groupno = 'Group ' + str(currentGroupNo)
+                groupno = 'Team ' + str(currentGroupNo)
                 currentGroup['group'] = groupno
                 currentGroup['filter1'] = fv1
                 currentGroup['filter2'] = fv2
@@ -98,7 +97,7 @@ def getGroups2Crit(groupSize=20,df=None,qoptions=None,currentGroupNo=1):
                 fv1 = getFilter(qa,f1)
                 fv2 = getFilter(qb,f2)
                 
-                groupno = 'Group ' + str(currentGroupNo)
+                groupno = 'Team ' + str(currentGroupNo)
                 currentGroup['group'] = groupno
                 currentGroup['filter1'] = fv1
                 currentGroup['filter2'] = fv2
@@ -132,7 +131,7 @@ def getGroups1Crit(groupSize=20,df=None,qoptions=None,currentGroupNo=1):
                 currentGroup = currentGroup.reset_index(drop=True)
                 f1 = currentGroup[qa].iloc[0]             
                 fv1 = getFilter(qa,f1)          
-                groupno = 'Group ' + str(currentGroupNo)
+                groupno = 'Team ' + str(currentGroupNo)
                 currentGroup['group'] = groupno
                 currentGroup['filter1'] = fv1
                 currentGroup['filter2'] = "N/A"

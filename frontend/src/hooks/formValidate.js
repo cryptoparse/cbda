@@ -12,12 +12,16 @@ const useForm = (callback) => {
 
     switch (name) {
       case "username":
-        if (value.length <= 3) {
+        if (
+          !new RegExp(/^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/).test(
+            value
+          )
+        ) {
           // we will set the error state
 
           setErrors({
             ...errors,
-            username: "Username atleast have 4 letters",
+            username: "Enter a valid Full Name",
           });
         } else {
           // set the error state empty or remove the error for username input
