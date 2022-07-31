@@ -142,7 +142,7 @@ export default function ExcelAtExcelScreen() {
       <div>
         <form onSubmit={submitAction}>
           <div className="mb-3">
-            <h1>Enter Group number</h1>
+            <h1>Enter Team number</h1>
             <br />
             <input
               id="group"
@@ -445,7 +445,7 @@ export default function ExcelAtExcelScreen() {
           </div>
           <div>
             <br />
-            <h1>Case 3: Locgicl and Analytical Reasoning</h1>
+            <h1>Case 3: Logical and Analytical Reasoning</h1>
             <br />
             <div className="mb-3">
               <label for="c3q1" className="form-label">

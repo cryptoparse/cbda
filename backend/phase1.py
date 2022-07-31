@@ -59,7 +59,7 @@ def getGroups(groupSize=20,df=None,qoptions=None):
                 if(gno>=currentGroupNo):
                     gno=1
                 email = row['email']
-                groupno = 'Group ' + str(gno)
+                groupno = 'Team ' + str(gno)
                 fv1rest = groupingList['filter1'][groupingList['group'] == groupno ].values[1]
                 fv2rest = groupingList['filter2'][groupingList['group'] == groupno ].values[1] 
                 fv3rest = groupingList['filter3'][groupingList['group'] == groupno ].values[1] 
