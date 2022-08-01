@@ -66,7 +66,7 @@ export default function IceBreakerFormScreen() {
             <option value="op2">BBA</option>
             <option value="op3">BSc Psychology</option>
             <option value="op4">BBA Analytics</option>
-            <option value="op4">BCOM with ACCA</option>
+            <option value="op5">BCOM with ACCA</option>
           </select>
 
           <br />
