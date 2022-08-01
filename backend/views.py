@@ -13,6 +13,9 @@ from django.conf import settings
 #
 from django.utils.crypto import get_random_string
 #
+
+
+
 class EventUserViewSet(views.APIView):
     def post(self,request):
         allusrs = EventUser.objects.all()

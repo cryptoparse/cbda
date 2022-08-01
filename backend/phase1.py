@@ -1,7 +1,6 @@
 import pandas as pd
 import itertools
 import os
-import random
 
 
 def getFilter(q,o):
