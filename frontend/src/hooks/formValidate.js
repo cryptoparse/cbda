@@ -13,7 +13,7 @@ const useForm = (callback) => {
     switch (name) {
       case "username":
         if (
-          !new RegExp(/^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/).test(
+          !new RegExp(/^[A-Za-z]([-']?[A-Za-z]+)*( [A-Za-z]([-']?[A-Za-z]+)*)+$/).test(
             value
           )
         ) {
