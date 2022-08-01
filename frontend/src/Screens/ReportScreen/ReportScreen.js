@@ -115,7 +115,7 @@ export default function ReportScreen() {
                 <br />
                 <hr />
                 <div>
-                  <div dangerouslySetInnerHTML={{ __html: AnsHtml }} />
+                  
                 </div>
               </div>
             </div>
