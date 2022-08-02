@@ -7,16 +7,16 @@ import {
   getGroupNumber,
   checkIfResult,
 } from "../../Services/apis";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import Cookies from "universal-cookie";
+
 export default function ExcelAtExcelScreen() {
   let navigate = useNavigate();
   const [gpNum, setGN] = useState(null);
   useEffect(() => {
-    getUserData((user) => {
-      getGroupNumber((group) => {
-        setGN(group);
-      }, user.email);
-    });
+    const cookies = new Cookies();
+    const gno = cookies.get("gno");
+    setGN(gno);
   }, []);
   const startEventPhase2 = () => {
     checkIfResult(gpNum, (resp) => {
@@ -111,15 +111,7 @@ export default function ExcelAtExcelScreen() {
                 below. Solve the questions. Once done, ask your respective
                 volunteers to assist your team in submitting your answers
               </p>
-              <div className="d-flex flex-column bd-highlight mb-3">
-                <button
-                  type="button"
-                  className="btn btn-lg"
-                  onClick={startEventPhase2}
-                >
-                  CHECK YOUR RESULTS
-                </button>
-              </div>
+              <div className="d-flex flex-column bd-highlight mb-3"></div>
             </div>
           </div>
           <h1>Case 1: Swiggy Data - Pre and Post Diwali</h1>

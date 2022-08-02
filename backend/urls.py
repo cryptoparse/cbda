@@ -7,6 +7,7 @@ urlpatterns = [
     path('adminGetAccess/', views.AdminLogin.as_view() ), #
     path('getallusers/', views.EventUserViewSet.as_view() ),#
     path('getallgroups/',views.AllGroupData.as_view()), #
+    path('getallgroupsF/',views.AllGroupDataF.as_view()), #
     path('eventuserstatus/', views.EventStatusView.as_view() ),#
     path('makeGroups/',views.CreateGroups.as_view()), #
     #user

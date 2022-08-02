@@ -4,7 +4,6 @@ import "./style.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { getResult } from "../../Services/apis";
 import logo from "../../assets/images/CBDA_logo_png.png";
-import AnsHtml from "../../components/Answers.html";
 export default function ReportScreen() {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -114,9 +113,7 @@ export default function ReportScreen() {
                 />
                 <br />
                 <hr />
-                <div>
-                  
-                </div>
+                <div></div>
               </div>
             </div>
           </div>

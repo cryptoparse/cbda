@@ -13,7 +13,7 @@ from django.conf import settings
 #
 from django.utils.crypto import get_random_string
 #
-
+from itertools import chain
 
 
 class EventUserViewSet(views.APIView):
@@ -85,12 +85,45 @@ class Phase1View(views.APIView):
 #
 class AllGroupData(views.APIView):
     def post(self,request):     
-        gp = Group.objects.all().order_by('group')
+        gp = Group.objects.all().order_by('email')
+        
         serializer_class = gpSerialiser(gp,many=True)        
         data = serializer_class.data
-        usr = EventUser.objects.all()        
-    
-        return Response({'GroupList':data},status=status.HTTP_200_OK)
+        usr = EventUser.objects.all()
+        for x in range(0,len(data)):
+            usr = model_to_dict(EventUser.objects.get(email=data[x]["email"]))
+            data[x]["email"] = usr['username']
+        newlist = sorted(data, key=lambda d:d['email'])
+        '''
+        final = list({v['group']:v for v in newlist}.values())
+        newlist = sorted(final, key=lambda d:d['group'])
+        for a in newlist:
+            del a['email']
+
+        '''
+        return Response({'GroupList':newlist},status=status.HTTP_200_OK)
+
+class AllGroupDataF(views.APIView):
+    def post(self,request):     
+        gp = Group.objects.all().order_by('email')
+        
+        serializer_class = gpSerialiser(gp,many=True)        
+        data = serializer_class.data
+        usr = EventUser.objects.all()
+        for x in range(0,len(data)):
+            usr = model_to_dict(EventUser.objects.get(email=data[x]["email"]))
+            data[x]["email"] = usr['username']
+        newlist = sorted(data, key=lambda d:d['email'])
+        
+        final = list({v['group']:v for v in newlist}.values())
+        newlist = sorted(final, key=lambda d:d['group'])
+        for a in newlist:
+            del a['email']
+
+        
+        return Response({'GroupList':newlist},status=status.HTTP_200_OK)
+
+
 class AllResult(views.APIView):
     def post(self,request):
         res = Phase2.objects.all().order_by('totalscore')
@@ -233,6 +266,7 @@ class GetGroupingProgress(views.APIView):
         
         if Group.objects.filter(email=data["email"]).exists():
             grouprow = Group.objects.get(email = data["email"])
-            group = grouprow.group              
-            return Response({'groupno':group},status=status.HTTP_200_OK)
+            group = grouprow.group 
+            
+            return Response({'groupno':group,'Action':'YES'},status=status.HTTP_200_OK)
         return Response({'Action':'NO'},status=status.HTTP_200_OK)

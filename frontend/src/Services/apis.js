@@ -159,7 +159,7 @@ export async function setStage() {
     });
 }
 
-export function getGroupNumber(callback, email) {
+export async function getGroupNumber(callback, email) {
   fetch("/getGroupNumber/", {
     method: "POST",
     headers: {
@@ -171,13 +171,11 @@ export function getGroupNumber(callback, email) {
     }),
   })
     .then((response) => {
-      alert("hi")
       if (!response.ok) throw new Error(response.status);
       else return response.json();
     })
     .then((res) => {
-      alert(res.groupno)
-      callback(res.groupno);
+      return res.groupno;
     })
     .catch((err) => {
       console.log(err);
@@ -287,7 +285,25 @@ export async function getallgroups(callback) {
       console.log(err);
     });
 }
-
+export async function getallgroupsFilter(callback) {
+  fetch("/getallgroupsF/", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error(response.status);
+      else return response.json();
+    })
+    .then((res) => {
+      callback(res.GroupList);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 export async function getallusers(callback) {
   fetch("/getallusers/", {
     method: "POST",
@@ -356,9 +372,8 @@ export async function clearFlush(callback, inputField) {
     });
 }
 
-export function checkGroupingDone(email,callback) {
-  
-  fetch("/checkGroupingDone/", {
+export async function checkGroupingDone(email) {
+  const response = await fetch("/checkGroupingDone/", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -367,18 +382,9 @@ export function checkGroupingDone(email,callback) {
     body: JSON.stringify({
       email: email,
     }),
-  })
-    .then((response) => {
-      if (!response.ok) throw new Error(response.status);
-      else return response.json();
-    })
-    .then((res) => {
-      
-      callback(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  });
+  const res = response.json();
+  return res;
 }
 
 export async function getAllResult(callback) {
