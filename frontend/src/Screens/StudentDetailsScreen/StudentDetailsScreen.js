@@ -10,7 +10,7 @@ export default function StudentDetailsScreen() {
   const [inputField, setInputField] = useState({
     username: "",
     email: "",
-    phonenumber: 0,
+    phonenumber: null,
   });
   const cookies = new Cookies();
   function formSubmit() {
@@ -43,6 +43,7 @@ export default function StudentDetailsScreen() {
             className="form-control"
             onChange={inputsHandler}
             value={inputField.username}
+            required
           />
         </div>
         {errors.username && (
@@ -62,6 +63,7 @@ export default function StudentDetailsScreen() {
             className="form-control"
             onChange={inputsHandler}
             value={inputField.email}
+            required
           />
         </div>
         {errors.email && (
@@ -82,6 +84,7 @@ export default function StudentDetailsScreen() {
             className="form-control"
             onChange={inputsHandler}
             value={inputField.phonenumber}
+            required
           />
         </div>
         {errors.phonenumber && (
