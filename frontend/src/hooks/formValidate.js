@@ -12,11 +12,8 @@ const useForm = (callback) => {
 
     switch (name) {
       case "username":
-        if (
-          !new RegExp(/^[A-Za-z]([-']?[A-Za-z]+)*( [A-Za-z]([-']?[A-Za-z]+)*)+$/).test(
-            value
-          )
-        ) {
+        if (value.length < 3)
+         {
           // we will set the error state
 
           setErrors({

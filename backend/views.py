@@ -99,11 +99,11 @@ class AllResult(views.APIView):
 #
 class GetGroupNumber(views.APIView):
     def post(self,request):
-        data = request.data        
-        emailID =data["email"]
+        data = request.data             
+        emailID =data["email"]        
         try:
             grouprow = Group.objects.get(email = emailID)
-            group = grouprow.group
+            group = grouprow.group              
             return Response({'groupno':group},status=status.HTTP_200_OK)
         except EventUser.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -229,7 +229,10 @@ class DeleteAll(views.APIView):
         
 class GetGroupingProgress(views.APIView):
     def post(self,request):
-        data = request.data        
+        data = request.data   
+        
         if Group.objects.filter(email=data["email"]).exists():
-            return Response({'Action':'YES'},status=status.HTTP_200_OK)
+            grouprow = Group.objects.get(email = data["email"])
+            group = grouprow.group              
+            return Response({'groupno':group},status=status.HTTP_200_OK)
         return Response({'Action':'NO'},status=status.HTTP_200_OK)

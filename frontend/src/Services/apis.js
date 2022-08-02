@@ -159,7 +159,7 @@ export async function setStage() {
     });
 }
 
-export async function getGroupNumber(callback, email) {
+export function getGroupNumber(callback, email) {
   fetch("/getGroupNumber/", {
     method: "POST",
     headers: {
@@ -171,10 +171,12 @@ export async function getGroupNumber(callback, email) {
     }),
   })
     .then((response) => {
+      alert("hi")
       if (!response.ok) throw new Error(response.status);
       else return response.json();
     })
     .then((res) => {
+      alert(res.groupno)
       callback(res.groupno);
     })
     .catch((err) => {
@@ -354,9 +356,8 @@ export async function clearFlush(callback, inputField) {
     });
 }
 
-export async function checkGroupingDone(callback) {
-  const cookies = new Cookies();
-  const mail = cookies.get("email");
+export function checkGroupingDone(email,callback) {
+  
   fetch("/checkGroupingDone/", {
     method: "POST",
     headers: {
@@ -364,7 +365,7 @@ export async function checkGroupingDone(callback) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: mail,
+      email: email,
     }),
   })
     .then((response) => {
@@ -372,7 +373,8 @@ export async function checkGroupingDone(callback) {
       else return response.json();
     })
     .then((res) => {
-      callback(res.Action);
+      
+      callback(res);
     })
     .catch((err) => {
       console.log(err);

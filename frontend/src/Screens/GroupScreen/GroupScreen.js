@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { getUserData, getGroupNumber } from "./../../Services/apis";
-import { useNavigate } from "react-router";
+import { getGroupNumber } from "./../../Services/apis";
+import { useNavigate,useLocation } from "react-router";
 function GroupScreen() {
   let navigate = useNavigate();
+  const state = useLocation();
+  const {email} = state;
   const [gpNum, setGN] = useState(null);
-  useEffect(() => {
-    getUserData((user) => {
+  useEffect(() => {    
+      alert("hi")
       getGroupNumber((group) => {
         setGN(group);
-      }, user.email);
-    });
+      },email);    
   }, []);
   const startEventPhase2 = () => {
     navigate("/excelAtExcelDisplay");

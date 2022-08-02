@@ -9,34 +9,58 @@ import {
 import {  useNavigate } from "react-router-dom";
 
 function WaitingScreen() {
-
-  const [errorMsg,setMsg] = useState("");
+  const [userEmail,setUserEmail] = useState("")
   let navigate = useNavigate()
   
   const loadingRef = useRef();
   const checkGrouping = ()=>{
-    checkGroupingDone((res) => {
-      console.log(res)
-      if (res === "YES") {          
-          navigate('/groupDisplay')
+    checkGroupingDone(userEmail,(res) => {
+      
+      if (res.Action == "NO") {  
+        alert("Teams not yet formed Please wait")                                  
+        
       } else {
-        alert("Teams not yet formed Please wait")       
+        
   }})
+  
   }
+
+  const inputsHandler = (e) => {
+    setUserEmail(e.target.value);
+  };
   return (
     <div>
       <div className="d-grid gap-2">
         <LoadingAction ref={loadingRef} />
         <div className="d-flex flex-column bd-highlight mb-3">
-        <h3>Please wait while others Fill</h3>
+        <h3>Please Enter your Email ID</h3>
         </div>
+        <form onSubmit={checkGrouping}>
+        <div className="mb-3">
+          <label for="email" className="form-label">
+            Your Email ID
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            className="form-control"
+            placeholder="Email ID"
+            
+            onChange={inputsHandler}
+            
+          />
+        </div>
+        <br/><br/><br/>
         <div  className="d-flex flex-column bd-highlight mb-3 ">
-        <button onClick={checkGrouping} className="btn btn-lg">Click here to check if your Team has been alloted</button>
+
+
+        <button value="submit" type="submit" className="btn btn-lg">Click here to check if your Team has been alloted</button>
+        
         </div>
+        </form>
         <br/>
-        <div  className="d-flex flex-column bd-highlight mb-3">
-        <p>{errorMsg}</p>
-      </div>
+        
     </div>
     </div>
   );
