@@ -46,7 +46,7 @@ const useForm = (callback) => {
         break;
 
       case "phonenumber":
-        if (value.length !== 10) {
+        if (value.length < 10) {
           setErrors({
             ...errors,
             phonenumber: "Enter valid phone number",
