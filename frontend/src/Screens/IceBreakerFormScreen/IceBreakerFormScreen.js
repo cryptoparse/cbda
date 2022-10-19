@@ -48,7 +48,7 @@ export default function IceBreakerFormScreen() {
         <form onSubmit={submitAction}>
           <br />
           <label for="q1" className="form-label">
-            Which course are you have enrolled to in?
+            Which subject are you interested in?
           </label>
           <select
             id="q1"
@@ -62,11 +62,12 @@ export default function IceBreakerFormScreen() {
             <option selected value="">
               Chose an Option
             </option>
-            <option value="op1">BCOM</option>
-            <option value="op2">BBA</option>
-            <option value="op3">BSc Psychology</option>
-            <option value="op4">BBA Analytics</option>
-            <option value="op5">BCOM with ACCA</option>
+            <option value="op1">Finance</option>
+            <option value="op2">Marketing</option>
+            <option value="op3">Human Resources</option>
+            <option value="op4">Business Analytics</option>
+            <option value="op5">Others</option>
+            <option value="op6">Not Sure</option>
           </select>
 
           <br />
