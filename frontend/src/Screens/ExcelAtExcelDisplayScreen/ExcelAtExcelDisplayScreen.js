@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import c3q2_I from "../../assets/images/c3q2.png";
-import c3q6_I from "../../assets/images/c3q6.png";
-import c3q8_I from "../../assets/images/c3q8.png";
+import c3q4_I from "../../assets/images/c3q4.png";
 import {
   getUserData,
   getGroupNumber,
@@ -52,6 +50,12 @@ export default function ExcelAtExcelScreen() {
     c3q7: 0,
     c3q8: 0,
     c3q9: 0,
+    c3q10: 0,
+    c3q11: 0,
+    c3q12: 0,
+    c3q13: 0,
+    c3q14: 0,
+    c3q15: 0,
   });
 
   const inputsHandler = (e) => {
@@ -394,9 +398,13 @@ export default function ExcelAtExcelScreen() {
             <br />
             <div className="mb-3">
               <label for="c3q1" className="form-label">
-                1. In a certain language, BOOK is written as 4300, MATE is
-                written as 3900. Then 1600 will represent which word out of
-                given alternatives?
+              <strong>1.	Study the following information carefully and answer the question given below:<br/><br/>
+              In a certain code language:</strong><br/><br/>
+“All is well” is coded as “pq rt jk”<br/>
+“All in one” is coded as “uv mn jk”<br/>
+“One thing well” is coded as “pq st uv”<br/>
+“In the style” is coded as “ef ab mn”<br/><br/>
+What is the code of “one in style” as per the given code language? 
               </label>
               <br />
 
@@ -405,23 +413,26 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q1"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
                 </option>
-                <option value="0">GOOD</option>
-                <option value="0">WOOD</option>
-                <option value="0">CRAB</option>
-                <option value="10">CAGE</option>
+                <option value="0">ef st rt</option>
+                <option value="0">pq ab mn</option>
+                <option value="10">ef mn uv</option>
+                <option value="0">ab jk rt</option>
               </select>
               <br />
             </div>
             <div className="mb-3">
               <label for="c3q2" className="form-label">
-                2. Find the number of triangles in the given figure?
+              2.	In a certain code language ‘HARVEST’ is coded as  
+ 41-40-13-48-41-8-23. How will ‘HISTORY’ be coded as in that language    
+
               </label>
               <br />
-              <img src={c3q2_I} />
+            
               <br />
 
               <select
@@ -429,22 +440,22 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q2"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
                 </option>
-                <option value="0">8</option>
-                <option value="0">10</option>
-                <option value="10">14</option>
-                <option value="0">16</option>
+                <option value="0">41-44-8-23-13-48-40</option>
+                <option value="10">51-38-33-44-43-24-23</option>
+                <option value="0">51-40-24-23-44-33-8</option>
+                <option value="0">41-40-38-24-44-33-13</option>
               </select>
               <br />
             </div>
 
             <div className="mb-3">
               <label for="c3q2" className="form-label">
-                3. A sum of money at simple interest amounts to Rs. 815 in 3
-                years and to Rs. 854 in 4 years. The sum is:
+              3.	Select the letter-cluster that can replace the question mark(?) in the following series.<br/><b>CXB, EZD, HCG, LGK</b>
               </label>
               <br />
 
@@ -453,44 +464,46 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q3"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
                 </option>
-                <option value="0">Rs 651</option>
-                <option value="0">Rs 692</option>
-                <option value="10">Rs 698</option>
-                <option value="0">Rs 704</option>
+                <option value="10">QLP</option>
+                <option value="0">QPQ</option>
+                <option value="0">NOP</option>
+                <option value="0">OMP</option>
               </select>
               <br />
             </div>
             <div className="mb-3">
-              <label for="c3q2" className="form-label">
-                4. If one-third of one-fourth of a number is 15, then
-                three-tenth of that number is
+              <label for="c3q4" className="form-label">
+                4.	How many rectangles are there in the given figure?   
               </label>
-              <br />
 
+              <br />
+              <img src={c3q4_I} />
+                <br/>
               <select
                 id="c3q4"
                 className="form-select"
                 name="c3q4"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
                 </option>
                 <option value="0">35</option>
-                <option value="0">36</option>
-                <option value="0">45</option>
-                <option value="10">54</option>
+                <option value="0">34</option>
+                <option value="0">33</option>
+                <option value="10">31</option>
               </select>
               <br />
             </div>
             <div className="mb-3">
               <label for="c3q2" className="form-label">
-                5. The total age of Akash, Akbar and Abhishek is 80 years. What
-                was the total of their ages three years ago?
+              5.	If the time increases by 4 years, then simple interest increases by Rs. 2000 on a sum of Rs. 5000. What is the rate (in percentage) of interest per annum?  
               </label>
               <br />
 
@@ -499,44 +512,45 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q5"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
                 </option>
-                <option value="10">71 Years</option>
-                <option value="0">72 Years</option>
-                <option value="0">74 Years</option>
-                <option value="0">77 Years</option>
+                <option value="0">12</option>
+                <option value="0">15</option>
+                <option value="10">10</option>
+                <option value="0">20</option>
               </select>
               <br />
             </div>
             <div className="mb-3">
               <label for="c3q2" className="form-label">
-                6. Identify the figure that completes the pattern?
+              6.	Divide 57 into two parts so that 8 times one part and 13 times the other are together 496. 
               </label>
               <br />
-              <img src={c3q6_I} />
-              <br />
+              
 
               <select
                 id="c3q6"
                 className="form-select"
                 name="c3q6"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
                 </option>
-                <option value="0">1</option>
-                <option value="0">2</option>
-                <option value="0">3</option>
-                <option value="10">4</option>
+                <option value="0">7,49</option>
+                <option value="0">49, 7</option>
+                <option value="0">50, 8</option>
+                <option value="10">49. 8</option>
               </select>
               <br />
             </div>
             <div className="mb-3">
               <label for="c3q2" className="form-label">
-                7. 7, 10, 8, 11, 9, 12, ... What number should come next?
+              7.	The greater of two numbers whose product is 1500 and sum exceeds their difference by 50 is
               </label>
               <br />
 
@@ -545,39 +559,39 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q7"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
                 </option>
-                <option value="0">7</option>
-                <option value="10">10</option>
-                <option value="0">12</option>
-                <option value="0">13</option>
+                <option value="0">50</option>
+                <option value="10">60</option>
+                <option value="0">30</option>
+                <option value="0">40</option>
               </select>
               <br />
             </div>
             <div className="mb-3">
               <label for="c3q2" className="form-label">
-                8. Choose the alternative which closely resembles the mirror
-                image of the given combination.
+              8.	How many numbers are there from 200 to 800 which are divisible by 2, 4 and 5?
               </label>
               <br />
-              <img src={c3q8_I} />
-              <br />
+              
 
               <select
                 id="c3q8"
                 className="form-select"
                 name="c3q8"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
                 </option>
-                <option value="0">1</option>
-                <option value="10">2</option>
-                <option value="0">3</option>
-                <option value="0">4</option>
+                <option value="0">41</option>
+                <option value="10">31</option>
+                <option value="0">81</option>
+                <option value="0">98</option>
               </select>
               <br />
             </div>
@@ -593,6 +607,7 @@ export default function ExcelAtExcelScreen() {
                 className="form-select"
                 name="c3q9"
                 onChange={inputsHandler}
+                required
               >
                 <option value="" selected>
                   Choose your Option
@@ -601,6 +616,150 @@ export default function ExcelAtExcelScreen() {
                 <option value="0">324</option>
                 <option value="10">429</option>
                 <option value="0">537</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+              10.	If  ‘+’ means ‘÷’, ‘×’ means ‘ – ’ ,  ‘÷’ means ‘×’,  ‘ – ’ means ‘+’. What will be the value of following expression?
+              </label>
+              <br />
+
+              <select
+                id="c3q10"
+                className="form-select"
+                name="c3q10"
+                onChange={inputsHandler}
+                required
+              >
+                <option value="" selected>
+                  Choose your Option
+                </option>
+                <option value="10">6</option>
+                <option value="0">8</option>
+                <option value="0">24</option>
+                <option value="0">16</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+              11.	If the difference between the average of ages of  Lawyer A and Lawyer V and that of Lawyer V and Lawyer Z  is 48, what will be the difference between Lawyer A and Lawyer Z ? 
+
+              </label>
+              <br />
+
+              <select
+                id="c3q11"
+                className="form-select"
+                name="c3q11"
+                onChange={inputsHandler}
+                required
+              >
+                <option value="" selected>
+                  Choose your Option
+                </option>
+                <option value="0">24</option>
+                <option value="0">12</option>
+                <option value="10">96</option>
+                <option value="0">76</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+              12.	If A’s income is 20% less than that of B, how much percent B’s income is more than that of A?
+              </label>
+              <br />
+
+              <select
+                id="c3q12"
+                className="form-select"
+                name="c3q12"
+                onChange={inputsHandler}
+                required
+              >
+                <option value="" selected>
+                  Choose your Option
+                </option>
+                <option value="10">25%</option>
+                <option value="0">55%</option>
+                <option value="0">88%</option>
+                <option value="0">80%</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+              13.	16 boys is required to type one fourth of legal document in 20 days. How many more boys will be required to complete typing legal document in 40 days? 
+              </label>
+              <br />
+
+              <select
+                id="c3q13"
+                className="form-select"
+                name="c3q13"
+                onChange={inputsHandler}
+                required
+              >
+                <option value="" selected>
+                  Choose your Option
+                </option>
+                <option value="0">24</option>
+                <option value="0">16</option>
+                <option value="0">32</option>
+                <option value="10">8</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+                14.	Six Lawyers are going to the six different city courts on two different dates i.e. 7th and 16th of three different months i.e. March, April and May of the same year.<br/>
+B goes in the month which has an odd number of days and on odd number date. Two persons go in between B and the one who goes to Bengaluru court. Only two persons go after the one who goes to Varanasi court. A goes to Delhi court on an odd-numbered date. Only one person goes between A and F. As many people who go before F, as many people go after C. More than two persons go in between D and the E who goes to Indore court. F does not go to Chennai court. One of the persons visits Pune court.
+
+The lawyer who goes on 7th April goes to which city court?  
+              </label>
+              <br />
+
+              <select
+                id="c3q14"
+                className="form-select"
+                name="c3q14"
+                onChange={inputsHandler}
+                required
+              >
+                <option value="" selected>
+                  Choose your Option
+                </option>
+                <option value="0">Chennai</option>
+                <option value="10">Pune</option>
+                <option value="0">Bengaluru</option>
+                <option value="0">Delhi</option>
+              </select>
+              <br />
+            </div>
+            <div className="mb-3">
+              <label for="c3q2" className="form-label">
+              15.	Seven Lawyers A, B, C, D, E, F and G sits consecutive in vertical row. Each person likes different subjects i.e. Constitutional law, Criminal law, Environmental law, Family law, Labor law, Property law and Administrative law. All the information is not necessarily in the same order. <br/>
+Two lawyers sit between B and the one, who likes Criminal law. A sits immediate above the one, who likes Criminal law. B likes Property law. More than four lawyers sit between G and F, who likes Constitutional law. F sits at the bottommost position. A likes Environmental law and sits below G but not immediately below. D, who likes Family law, sits below the one, who likes Labor law and above C. G does not like Labor law.
+
+              </label>
+              <br />
+
+              <select
+                id="c3q15"
+                className="form-select"
+                name="c3q15"
+                onChange={inputsHandler}
+                required
+              >
+                <option value="" selected>
+                  Choose your Option
+                </option>
+                <option value="10">G</option>
+                <option value="0">C</option>
+                <option value="0">E</option>
+                <option value="0">D</option>
               </select>
               <br />
             </div>

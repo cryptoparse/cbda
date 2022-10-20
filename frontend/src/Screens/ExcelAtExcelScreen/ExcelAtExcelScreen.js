@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import c3q4_I from "../../assets/images/c3q4.png";
-import c3q6_I from "../../assets/images/c3q6.png";
-import c3q8_I from "../../assets/images/c3q8.png";
 import { savePhase2Result } from "../../Services/apis";
 export default function ExcelAtExcelScreen() {
   const [inputField, setInputField] = useState({
