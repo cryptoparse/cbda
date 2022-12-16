@@ -318,6 +318,7 @@ export async function getallusers(callback) {
     })
     .then((res) => {
       callback(res.UserList);
+      
     })
     .catch((err) => {
       console.log(err);

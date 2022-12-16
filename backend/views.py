@@ -144,7 +144,7 @@ class GetGroupNumber(views.APIView):
 class CreateGroups(views.APIView):
     def post(self,request):
         allGroups = pd.DataFrame.from_records(list(Phase1.objects.all().values()))
-        groups = getGroups(15,allGroups)
+        groups = getGroups(6,allGroups)
         try:
             for index,row in groups.iterrows():
                 groupsTable = Group()

@@ -62,10 +62,10 @@ export default function IceBreakerFormScreen() {
             <option selected value="">
               Chose an Option
             </option>
-            <option value="op1">Finance</option>
-            <option value="op2">Marketing</option>
-            <option value="op3">Human Resources</option>
-            <option value="op4">Business Analytics</option>
+            <option value="op1">Financial Management</option>
+            <option value="op2">Economics</option>
+            <option value="op3">Statistics</option>
+            <option value="op4">Accounting</option>
             <option value="op5">Others</option>
             <option value="op6">Not Sure</option>
           </select>

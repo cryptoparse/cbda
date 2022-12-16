@@ -1,9 +1,10 @@
 ﻿question,option,value
-q1,op1,BCOM
-q1,op2,BBA
-q1,op3,BSC Psychology
-q1,op4,BBA Analytics
-q1,op5,BCOM with ACCA
+q1,op1,Financial Management
+q1,op2,Economics
+q1,op3,Statistics
+q1,op4,Business Analytics
+q1,op5,Others
+q1,op6,Not Sure
 q2,op1,Red
 q2,op2,Blue
 q2,op3,Green
